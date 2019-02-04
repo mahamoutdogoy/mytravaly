@@ -1,0 +1,258 @@
+body
+{
+    font-family: 'Roboto', sans-serif;
+    min-height: 100vh;
+
+}
+.right-padding
+{
+    padding-right: 0;
+}
+.no-padding
+{
+    padding: 0;
+
+}
+
+/*   nav bar */
+
+.navbar
+{
+    border-top: 1px solid #f15025;
+   /* border-bottom: 1px solid #f15025;
+*/    background-color:#fff;
+  /*   height:140px; */
+    
+}
+
+.navbar .navbar-brand
+{
+    color: #f15025;
+
+}
+.navbar .navbar-link,
+.navbar .icons
+{
+    color: #687384;
+}
+
+.navbar .navbar-link:hover,
+.navbar .icons:hover
+{
+    color: #fff;
+
+}
+.navbar .icon
+{
+    position: relative;
+}
+.navbar .icon::after
+{
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 10px;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background-color: #ef5350;
+
+}
+
+
+/*  --------      sidebar    -------------  */
+
+
+ .sidebar
+ {
+     background-color: #f15025;
+     height:900px;
+    
+ }
+
+ .sidebar .nav-link,
+ .sidebar .navbar-brand
+ {
+    /* color: #687384;*/
+    color: #fff;
+     padding-left: 2px;
+ }
+
+
+
+ .sidebar .nav-link:hover,
+ .sidebar .navbar-brand:hover
+ {
+     color:#FF7F11;
+ }
+
+.hh
+{
+    color:#FF7F11;
+}
+
+
+ /*  ----------  card section ----------  */
+
+ .inform-card .card-1
+ {
+     background-color: #FF7F11;
+
+ }
+
+
+ .inform-card .card-2
+ {
+     background-color: #FF1B1C;
+
+ }
+
+
+
+ .inform-card .card-3
+ {
+     background-color: #E01A4F;
+
+ }
+
+
+ .inform-card .card-4
+ {
+     background-color: #F0A202
+
+ }
+
+
+ .inform-card .card-5
+ {
+     background-color: #F0A202
+
+ }
+
+
+ .inform-card .card-6
+ {
+     background-color: #F0A202
+
+ }
+
+
+ .inform-card .card-7
+ {
+     background-color: #F0A202
+
+ }
+
+ .inform-card .card-8
+ {
+     background-color: #F0A202
+
+ }
+
+
+ .inform-card .card .body-icon
+ {
+        font-size: 60px;
+        transform: rotate(315deg);
+        color: #49C6E5;
+ }
+
+ .inform-card .card .fa,
+ .inform-card .card a
+ {
+     color:#49C6E5;
+ }
+
+ .inform-card .card a:hover
+ {
+     text-decoration: none;
+     color:#fff;
+ }
+ .inform-card .card
+ {
+     color: #fff;
+ }
+
+ .inform-card .card-footer
+ {
+     background: rgb(0,0,0,0.5);
+ }
+
+
+ .top
+ {
+     text-align: center;
+ }
+ input[type="text1"], textarea {
+
+    background-color : #f1e205; 
+    text-align: center;
+    border-radius: 10px;
+  
+  
+  
+  }
+
+  input[type="text"], textarea {
+
+    background-color : #05f111; 
+    text-align: center;
+    border-radius: 10px;
+  
+  }
+  .profitnav
+  {
+      
+      display: block;
+      list-style-type: none;
+
+      /* padding-top: 40px; */
+      
+      
+  }
+  li
+  {
+  float: left;
+  list-style-type: none;
+      
+
+  }
+
+  .profitnav ul li a
+  {
+
+    text-decoration: none;
+    display: inline;
+    font-size: 20px;
+    margin: 70px;
+    color: black;
+    list-style-type: none;
+    
+      
+
+  }
+  
+  .tablehead
+  {
+     color: #f15025;    
+    
+
+  }
+
+  .roomtype
+  {
+      /* background-color: #05f111; */
+      
+  }
+
+
+
+  input[type="text3"], textarea {
+
+    
+    text-align: center;
+    height: 30px;
+    width: 240px;
+    border: none;
+  }
+  

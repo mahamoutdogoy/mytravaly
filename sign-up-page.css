@@ -1,0 +1,18 @@
+/*h1 color*/
+.jumbotron{
+	background-color: #ff6f56;
+}
+/*submit button color*/
+#submit{
+	background-color: #20b288;
+}
+/*align form to center*/
+.container{
+	width: 45vw;
+}
+
+@media screen and (max-width:1000px){
+	.container{
+		width: 90vw;
+	}
+}
