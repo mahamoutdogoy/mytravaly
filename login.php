@@ -1,3 +1,48 @@
+<?php
+//session_start();
+
+include"connect.php";
+if(isset($_POST['Login'])){
+	$email=mysqli_real_escape_string($con,$_POST['email']);
+	$password=mysqli_real_escape_string($con,$_POST['password']);
+	if(empty($email)&&empty($password)){
+	$error= 'Fields are Mandatory';
+	}else{
+   $result=mysqli_query($con,"SELECT * FROM user WHERE email='$email' AND password='$password'");
+   $row=mysqli_fetch_assoc($result);
+   $count=mysqli_num_rows($result);
+   if($count==1){
+	
+	$_SESSION['user']=array(
+	 'userid'=>$row['userid'],	
+	 'fname'=>$row['fname'],
+	 'lname'=>$row['lname'],
+	 'country'=>$row['country'],
+	 'property'=>$row['property'],
+	 'email'=>$row['email'],
+	 'image'=>$row['image'],
+	 'password'=>$row['password'],
+	 'role'=>$row['role']
+	 );
+	 $role=$_SESSION['user']['role'];
+	switch($role){
+	case 'user':
+	header('location:phpmailer/index.php');
+	break;
+	case 'superadmin':
+	header('location:mytravalyAdmin/superadmin.php');
+	break;
+	case 'admin':
+	header('location:phpmailer/index.php');
+	break;
+   }
+   }else{
+   $error='Your PassWord or Email is not Found';
+   }
+  }
+  }
+  ?>
+
 <div>
 
 			<form action="" class="login_form float-right" method="post">

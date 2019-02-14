@@ -13,6 +13,13 @@ include"../fetch.php";
 <!doctype html>
 <html lang="en">
   <head>
+
+<!-- 
+  <script type="text/javascript" >
+   function preventBack(){window.history.forward();}
+    setTimeout("preventBack()", 0);
+    window.onunload=function(){null};
+</script> -->
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -177,7 +184,7 @@ include"../fetch.php";
         <!------------ sidebar ------------->
          <nav class="col-md-3 col-lg-2 d-none d-md-block sidebar right-padding max-viewport">
 
-            <a href="#" class="navbar-brand py-3">
+            <a href="userprofile.php" class="navbar-brand py-3">
 
                 <img src="images/team.jpg" width="40" alt="person" class="img-fluid rounded-circle img-thumbnail mr-3">
 

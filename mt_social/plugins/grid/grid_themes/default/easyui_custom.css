@@ -1,0 +1,22 @@
+table.datagrid-btable {
+
+}
+
+.datagrid-header td, .datagrid-body td, .datagrid-footer td {
+	border-style: solid;
+}
+
+.datagrid-cell, .datagrid-cell-group, .datagrid-header-rownumber, .datagrid-cell-rownumber
+{
+	font-size: 13px;
+}
+
+.datagrid-header .datagrid-cell span {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.datagrid-header td, .datagrid-body td, .datagrid-footer td {
+	font-size: 14px;
+	padding: 7px;
+}

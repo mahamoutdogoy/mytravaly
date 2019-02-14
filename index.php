@@ -51,8 +51,10 @@ if(isset($_POST['Login'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+  
 	<meta charset="UTF-8">
-	<title>Travely Travel</title>
+	<title>MyTravely </title>
 	
 
 

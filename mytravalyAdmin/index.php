@@ -1,11 +1,11 @@
 <?php 
 session_start();
 
-// if($_SESSION["userid"]==true)
+//if($_SESSION["userid"]==true)
 
 
 include("../connect.php");
-include("../usercheck.php");
+include"../fetch.php";
 
 
 ?>
@@ -19,6 +19,13 @@ include("../usercheck.php");
 <html lang="en">
   <head>
     <!-- Required meta tags -->
+
+<!-- 
+    <script type="text/javascript" >
+   function preventBack(){window.history.forward();}
+    setTimeout("preventBack()", 0);
+    window.onunload=function(){null};
+</script> -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -198,7 +205,7 @@ include("../usercheck.php");
                </li>
 
                <li class="nav-item">
-                       <a href="../leadtablepage.php" class="nav-link">
+                       <a href="../mytravalycrm/CRM/leadtablepage.php" class="nav-link">
                            <i class="fa fa-envelope " style="color:#E01A4F;"></i>   
                            &nbsp;&nbsp;CRM         
                           </a>
@@ -262,7 +269,7 @@ include("../usercheck.php");
 
 
                            <li class="nav-item">
-                                <a href="../createuser.php" class="nav-link">
+                                <a href="../usermgt/user_main1.php" class="nav-link">
                                     <i class="fa fa-users " style="color:#a610e5"></i>   
                                     &nbsp;&nbsp;User Management        
                                    </a>

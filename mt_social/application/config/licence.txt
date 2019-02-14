@@ -1,0 +1,1 @@
+{"is_active":"529793543c33757f9920e87dc7c7933f","purchase_code":"3cf7c96d-9286-4aeb-a350-2ccdd98997ea","item_name":"PixClicks : Clickable Image Poster & Click Tracking (Facebook, Twitter, Tumblr, Pinterest, Linkedin)","buy_at":"2019-02-12T22:12:08+11:00","licence_type":"Regular License","domain":"localhost","checking_date":"2019-02-14"}

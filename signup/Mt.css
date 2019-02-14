@@ -1,0 +1,16 @@
+/*Set width of the form which changes with change in screen size.*/
+.container{
+	width: 45vw;
+}
+
+@media screen and (max-width:1000px){
+	.container{
+		width: 70vw;
+	}
+}
+
+@media screen and (max-width:700px){
+	.container{
+		width: 180vw;
+	}
+}
