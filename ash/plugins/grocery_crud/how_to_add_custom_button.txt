@@ -1,0 +1,22 @@
+$set_custom_link=array(
+'0'=>array
+ (
+  set_custom_link_pull_right=>true,
+  set_custom_link_url=>'http://xeroneit.net',
+  set_custom_link_hover=>'Hello',
+  set_custom_link_btn_class=>'btn btn-danger',
+  set_custom_link_fa_class=>'fa fa-user',
+  set_custom_link_label=>'download'
+ ),
+'1'=>array
+ (
+  set_custom_link_pull_right=>true,
+  set_custom_link_url=>'http://xeroneit.net',
+  set_custom_link_hover=>'Hello',
+  set_custom_link_btn_class=>'btn btn-danger',
+  set_custom_link_fa_class=>'fa fa-user',
+  set_custom_link_label=>'download'
+ )
+);
+
+$this->session->set_userdata('set_custom_link',$set_custom_link);

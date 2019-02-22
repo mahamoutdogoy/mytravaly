@@ -2645,7 +2645,7 @@
 </html>
 <?php
     
-    include("../../connect.php");
+    include("../connect.php");
 
 
 
@@ -2656,11 +2656,13 @@
         $email=mysqli_real_escape_string($con, strip_tags($_POST['email']));
         $password=mysqli_real_escape_string($con, strip_tags($_POST['password']));
         $image=mysqli_real_escape_string($con, strip_tags($_POST['image']));
+
+
        
         
-        $sql=mysqli_query($con,"update mt set username='$username',email='$email',password='$password',
+        $sql=mysqli_query($con,"UPDATE mt SET username='$username',email='$email',password='$password',
             image='$image'
-            where empid='$_SESSION[user]'") or die(mysqli_error($con));
+            where email='$_SESSION[user]'") or die(mysqli_error($con));
         $result=mysqli_query($sql);
         if($result)
         {

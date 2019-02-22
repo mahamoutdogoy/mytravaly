@@ -1,3 +1,4 @@
+<?php  include"red.php"; ?>
 <style>
   
 
@@ -121,7 +122,7 @@
             <div class="navbar-header">
                <a href="#" class="navbar-brand py-3">
 
-                <img src="../images/hassan.jpg" width="30" alt="none" class="img-fluid rounded-circle img-thumbnail mr-3">Hi,mahamat
+                <img src="../images/hassan.jpg" width="30" alt="none" class="img-fluid rounded-circle img-thumbnail mr-3">Hi, prashanth
             </a>
             </div>
             
@@ -143,7 +144,7 @@
                </li>
 
                <li class="nav-item">
-                       <a href="leadtablepage.php" class="nav-link">
+                       <a href="index.php" class="nav-link">
                            <i class="fa fa-envelope " style="color:#E01A4F;"></i>   
                            &nbsp;&nbsp;CRM         
                           </a>

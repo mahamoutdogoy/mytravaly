@@ -1,3 +1,4 @@
+<?php  include"red.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,7 +85,7 @@
 						</thead>
 						<tbody>
 							<?php
-								$sel_sql = "SELECT * FROM designations";
+								$sel_sql = "SELECT * FROM designations ORDER BY desid DESC";
 								$run=mysqli_query($con, $sel_sql);
 								$c = 0;
 								while ($rows = mysqli_fetch_assoc($run)) {
@@ -113,7 +114,7 @@
 						</thead>
 						<tbody>
 							<?php
-								$sel_sql_d = "SELECT * FROM departments";
+								$sel_sql_d = "SELECT * FROM departments ORDER BY depid DESC";
 								$run_d=mysqli_query($con, $sel_sql_d);
 								$c = 0;
 								while ($drows = mysqli_fetch_assoc($run_d)) {

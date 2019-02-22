@@ -1,38 +1,174 @@
-
 <?php
-if(isset($_POST['submit']))
-{
-	$cid=$_REQUEST['cid'];
-	include("../dbConnect.php");
-	
-		$task=mysqli_real_escape_string($conn, strip_tags($_POST['task']));
-		$priority=mysqli_real_escape_string($conn, strip_tags($_POST['priority']));
-		$assignto=mysqli_real_escape_string($conn, strip_tags($_POST['assignto']));
-		$description=mysqli_real_escape_string($conn, strip_tags($_POST['description']));
-		$remarks=mysqli_real_escape_string($conn, strip_tags($_POST['remarks']));
-		$duedate=mysqli_real_escape_string($conn, strip_tags($_POST['duedate']));
-		
-	mysqli_query($conn,"insert into task_details (ClientId,Task,Priority,AssignTo,Status,Description,Remarks,DueDate)
-	values ('$cid','$task','$priority','$assignto','NOT YET STARTED','$description','$remarks','$duedate')") or die(mysqli_error($conn));
-	echo "<script>alert('added');</script>";
-	$url="location:task.php?cid=".$cid;
-	mysqli_close($conn);
-	
-	header($url);
-}
-?>
+	session_start();
 
-<html>
+	if(isset($_SESSION['cid']))
+	{
+		unset($_SESSION['cid']);
+	}
+	
+	$_SESSION['cid']=$_REQUEST['cid'];
+?>
+<html lang="en">
 <head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-<script type="text/javascript">
-      function preventBack() { window.history.forward(); }
+  <title> New Task </title>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  
+  
+  <link rel="stylesheet" type="text/css" href="main.css">
+  
+  <script type="text/javascript">
+        function preventBack() { window.history.forward(); }
         setTimeout("preventBack()", 0);
         window.onunload = function () { null };
-    </script>
+  </script>
+
+  <style type="text/css">
+		/*input[type=button],input[type=submit]{
+			background-color:#f15025;
+			color:#fff;
+			font-weight:bold
+		}*/
+		select,input[type=text] {
+			width:200px;
+			border-radius: 5px;
+			height: 30px;
+			border: solid 1px;
+		}
+		td{
+			font-weight: bold;
+			font-family: times;
+		}
+		textarea{
+			border-radius: 5px;
+			height: 30px;
+			border: solid 1px;
+		}
+
+	</style>
+  
+
+</head>
+<body >
+  <!--<div class="text-center" style="width:85%"></div> -->
+  <!-- Header Section -->
+   <div class="container-fluid">
+   <?php  include("header.php")?>
+   	
+   <br><br>
+   <!--Sidebar and form section -->
+   <div class="row">
+        <!--Sidebar section -->
+        <div class="col-md-3"  >
+            <?php include("sidebar.php"); ?>
+        </div>
+        <!--form section-->
+        <div class="col-md-5">
+	         <div>
+	        
+	        	<i class="fas fa-chevron-circle-left  fa-2x" style="color: #5bc0de" onclick="window.location='index.php'" ></i>
+	        
+	      	</div>
+		<!--adding task -->
+			
+           	<div class="container p-5">
+		   		<form action="" method="post">
+		   			<?php include("../dbConnect.php"); ?>
+		       	<div  class="form-group">
+					<label class="" for="task" >Task </label>
+					<select id="task" name="task" class=" float-right" required >
+						<option value="" disabled selected>--select--</option>
+		                <option value="Call">Call</option>
+		                <option value="Email">Email</option>
+		                <option value="Message">Message</option>
+		                <option value="Post Card">Post Card</option>
+		            </select>
+				</div>
+
+				<div  class="form-group">
+					<label class=" " for="priority" >Priority </label>
+						<select class=" float-right"  id="priority"  required name="priority"  onchange="myfunction()">
+			                <option value="" disabled selected>--select--</option>
+			                <option value="Hot" >Hot</option>
+			                <option value="Warm">Warm</option>
+				            <option value="Cold">Cold</option>
+				        </select>
+				</div>
+				<div  class="form-group">
+					<label class="" for="Duedate">Due date  </label>
+					<input type="text" class=" float-right" name="duedate" id="duedate" placeholder="Duedate"  readonly="" />
+				</div>
+				<div  class="form-group" >
+					<label class="" for="assignto">Assign to </label>
+						<select id="task" class=" float-right" name="assignto" required>
+			                <option value='' disabled selected>---select---</option>
+				            <?php
+				                           
+						      	$emp_list=mysqli_query($conn,"select name,email from employee") or die(mysqli_error($conn));
+				                while ($row3=mysqli_fetch_assoc($emp_list)) {
+				                	 echo "<option value='".$row3['name']."'>".$row3['name']."</option>";
+				                }
+				            ?>
+				                           
+				        </select>
+				</div>
+				<div  class="form-group">
+					<label class="" for="status">Status </label>
+					<input type="text" list="status" class=" float-right" name="status" value="Not Yet Started"  readonly />
+				</div>
+				<div  class="form-group">
+					<label class="" for="description" >Description </label>
+					<input type="text" class=" float-right" name="description" id="Description" />
+				</div>
+				<div  class="form-group">
+					<label class="" for="remarks" >Remarks</label>
+					<input type="text" class=" float-right" name="remarks" id="remarks"  />
+				</div>
+							<!--<div  class="form-group" align="center">
+								 <input type="submit"  id="submit" class=" btn btn-success "  style="width:100px;" name="submit" value="Save" >
+							</div>-->
+		       
+				
+		  					 <!-- Modal footer -->
+				<div class="modal-footer">
+					<input type="submit" name="addtask" value="Add" class="btn btn-success" style="width: 100px" onclick="javascript: form.action='add_new_task_code.php'" />
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				</div>
+				</form>
+		  	</div>
+		</div>
+		<div class="col-md-4">        
+	 
+	<table cellpadding=10>
+		<tr>
+		<?php 
+			$list=mysqli_query($conn,"select FirstName,LastName,Email,Phone from client_details	where ClientId='".$_REQUEST['cid']."';")or die(mysqli_error($conn));
+			$row=mysqli_fetch_assoc($list); ?>
+			<td>	<input type='button' class='btn btn-warning btn-sm' value='Edit Profile' data-toggle="modal" data-target="#EditModal" />	</td>
+		</tr>
+		<tr>
+			<td>	<img src='img/profile.png' height='70px' width='70px' radius=50>	</td>
+			<td> <b style='font-size:25'><?php echo $row['FirstName'].' '.$row['LastName']; ?> </b> </td>
+		</tr>
+		<tr>
+			<td>Phone No</td><br>
+			<td><b><?php echo $row['Phone']; ?></b></td>
+		</tr>
+		<tr>
+			<td>Email</td>
+			<td><label id="eid"> <span style='color:blue' id="email"><?php echo $row['Email']; ?> </span> </label></td>
+		</tr>
+		
+	</table>	
+	</div>
+	</div>
+	</div>
+	</body>
+	</html>
 <script type="text/javascript">
 
 function myfunction() {
@@ -68,135 +204,3 @@ function myfunction() {
           //getDate();
       }
 </script>
-<style>
-	select,input[type=text] {
-			width:200px;
-			border-radius: 5px;
-			height: 30px;
-			border: solid 1px;
-		}
-		td{
-			font-weight: bold;
-			font-family: times;
-		}
-</style>
-   
-</head>
-<body>
-	<form action='' method='post'>
-
-	<?php  include("../dbConnect.php");
-			include("header.php")?>
-   
-   <br><br>
-   <!--Sidebar and form section -->
-   <div class="row">
-
-       <!--Sidebar section -->
-        <div class="col-md-3"  >
-            <?php include("sidebar.php"); ?>
-        </div>
-
-
-		<!-- task details div-->
-		<div class="col-md-5">
-				
-			<table cellpadding="10px" align="center">
-			<tr>
-				<td>
-					<label class="" for="task" >Task </label>
-				</td>
-				<td>
-					<select id="task" name="task" required>
-						<option value="" disabled selected>--select--</option>
-                        <option value="Call">Call</option>
-                        <option value="Email">Email</option>
-                        <option value="Message">Message</option>
-                        <option value="Product Demo">Product Demo</option>
-                    </select>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label class=" " for="priority" >Priority </label>
-				</td>
-				<td>
-					<select id="priority" placeholder="Add" required name="priority" onchange="myfunction()">
-                            <option value="" disabled selected>--select--</option>
-                            <option value="Hot" >Hot</option>
-                            <option value="Warm">Warm</option>
-                            <option value="Cold">Cold</option>
-                    </select>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label class="" for="Duedate">Due date  </label>
-				</td>
-				<td>
-					<input type="text" name="duedate" id="duedate" placeholder="Duedate"  readonly="">
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label class="" for="assignto">Assign to </label>
-				</td>
-				<td>
-					<select id="task" name="assignto" required>
-                            <option value='' disabled selected>---select---</option>
-                              <?php
-                           
-                            	$emp_list=mysqli_query($conn,"select name,email from employee") or die(mysqli_error($conn));
-                            	while ($row3=mysqli_fetch_assoc($emp_list)) {
-                               		 echo "<option value='".$row3['name']."'>".$row3['name']."</option>";
-                               		}
-                            ?>
-                           
-                            </select>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label class="" for="status">Status </label>
-				</td>
-				<td>
-					<input type="text" list="status" name="status" value="NOT YET STARTED"  readonly />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label class="" for="description" >Description </label>
-				</td>
-				<td>
-					<input type="text" name="description" id="Description" >
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label class="" for="remarks" >Remarks</label>
-				</td>
-				<td>
-					<input type="text" name="remarks" id="remarks"  >
-				</td>
-			</tr>
-			<tr>
-				<td  align="left"> <input type="submit"  id="submit" class=" btn btn-success "  style="width:100px;" name="submit" value="Save" ></td>
-				<td> <?php $path="task.php?cid=".$_REQUEST['cid'] ; ?>
-				<input type='button' class='btn btn-success' value='Back' style="width:100px;" onclick="window.location='<?php echo($path); ?>'" />
-			
-			</td>
-			</tr>
-       
-		</table>
-	</div>
-	<!-- client Profile-->
-	<div class="col-md-3" >
-		<?php include("Client_profile.php"); ?>
-	</div>
-	</div>
-	
-
-	</form>
-</body>
-</html>
-

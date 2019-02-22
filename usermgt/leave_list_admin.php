@@ -41,7 +41,7 @@
 						</thead>
 						<tbody>
 							<?php
-								$sel_sql ="SELECT * FROM leave_application";
+								$sel_sql ="SELECT * FROM leave_application ORDER BY appid DESC";
 								$run = mysqli_query($con, $sel_sql);
 								$status_txt = " ";
 								$status_cls = " ";

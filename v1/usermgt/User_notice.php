@@ -1,3 +1,4 @@
+<?php  include"red.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +28,7 @@
     <!-- Listing the notices-->  
     <div class="row">
       <?php
-        $sel_sql = "SELECT * FROM notices";
+        $sel_sql = "SELECT * FROM notices ORDER BY notid DESC";
         $run =mysqli_query($con, $sel_sql);
         while ($rows = mysqli_fetch_assoc($run)) {
           # code... 

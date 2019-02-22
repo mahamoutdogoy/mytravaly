@@ -16,13 +16,13 @@
 $(document).ready(function(){
     $('.client').click(function(){
         var id=$(this).attr("text");
-          var temp=confirm("Are You Sure! \n You Want's To Remove This Client!");
+         var temp=confirm("Are You Sure! \n You Want's To Remove This Client!");
 		
 	if (temp== true) {
 	   $('#'+id).prop( "disabled", true );
         $('#'+id).closest('div').hide();
 	}
-	 
+        
     });
 });
 
@@ -83,12 +83,17 @@ $(document).ready(function(){
 	</div>
 	<div class="row">
 		<!--sidebar-->
-		<div class="col-md-3">
+		<div class="col-md-2">
 			<?php include("sidebar.php"); ?>
 		</div>
 		
 		<!-- add task form-->
 		<div class="col-md-6">
+			<div>
+			
+			<?php $path="window.location='index.php'"; ?>
+				<i class="fas fa-chevron-circle-left  fa-2x" style="color: #5bc0de" onclick=<?php echo $path; ?> ></i>
+		</div><br>
 		<table cellpadding="10px" >
 			<tr>
 				<td>
@@ -100,6 +105,7 @@ $(document).ready(function(){
                           <option value="Call">Call</option>
                            <option value="Email">Email</option>
                            <option value="Message">Message</option>
+                           <option value="Post Card">Post Card</option>
                     </select>
 				</td>
 			
@@ -168,7 +174,7 @@ $(document).ready(function(){
 			<tr>
 				<td colspan="2" align="right"> <input type="submit"  id="submit" class=" btn btn-success "  style="width:100px;" name="submit" value="Save" ></td>
 				<td colspan="2" >
-				 <input type="button"  class=" btn btn-success "  style="width:100px;" value="Back" onclick="window.location='leadtablepage.php'"></td>
+				 <input type="button"  class=" btn btn-success "  style="width:100px;" value="Back" onclick="window.location='index.php'"></td>
 				
 			</tr>
        
@@ -197,7 +203,7 @@ $(document).ready(function(){
 			else {
 				echo "<script>
 				alert('Oops!  You Are Not Selected Any Clients ....');
-				document.location='leadtablepage.php'
+				document.location='index.php'
 				</script>";
 			}
 	

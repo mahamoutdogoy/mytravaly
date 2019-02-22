@@ -98,7 +98,7 @@ include"../fetch.php";
                          </a>
                  </li>
                  <li class="nav-item">
-                         <a href="#" class="nav-link">
+                         <a href="../property1dfsdmbsdfsdjh" class="nav-link">
                          <i class="fa fa-desktop text-muted mr-3"></i>   
                                 Property        
                          </a>
@@ -217,7 +217,7 @@ include"../fetch.php";
                           </a>
                    </li>
                    <li class="nav-item">
-                           <a href="../propertymenus.php" class="nav-link">
+                           <a href="../property1/index.php" class="nav-link">
                                <i class="fa fa-building" style="color:rgba(194, 36, 133, 0.747)"></i>   
                                &nbsp;&nbsp;Property      
                               </a>
@@ -335,7 +335,7 @@ include"../fetch.php";
 
 
                            <li class="nav-item">
-                                <a href="../createuser.php" class="nav-link">
+                                <a href="../usermgt/user_main1.php" class="nav-link">
                                     <i class="fa fa-users " style="color:#a610e5"></i>   
                                     &nbsp;&nbsp;User Management        
                                    </a>

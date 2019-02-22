@@ -11,7 +11,12 @@ if(isset($_POST['Login'])){
    $result=mysqli_query($con,"SELECT * FROM user WHERE email='$email' AND password='$password'");
    $row=mysqli_fetch_assoc($result);
    $count=mysqli_num_rows($result);
+
+   $result1=mysqli_query($con,"SELECT * FROM users WHERE email='$email' AND passwd='$password'");
+   $row1=mysqli_fetch_assoc($result1);
+   $count1=mysqli_num_rows($result1);
    if($count==1){
+   	$_SESSION['user_id']= $row['userid'];
 	
 	$_SESSION['user']=array(
 	 'userid'=>$row['userid'],	
@@ -36,8 +41,32 @@ if(isset($_POST['Login'])){
 	header('location:phpmailer/index.php');
 	break;
    }
-   }else{
-   $error='Your PassWord or Email is not Found';
+   }elseif($count1==1){
+   		//$_SESSION['user_id']= $row['userid'];
+
+	
+	$_SESSION['user']=array(
+	 'userid'=>$row1['userid'],	
+	 'name'=>$row1['name'],
+	 'uname'=>$row1['uname'],
+	 'role'=>$row1['role']
+	 );
+	 $roles=$_SESSION['user']['role'];
+	switch($roles){
+	case 'user':
+	header('location:phpmailer/index.php');
+	break;
+	case 'superadmin':
+	header('location:mytravalyAdmin/superadmin.php');
+	break;
+	case 'admin':
+	header('location:phpmailer/index.php');
+	break;
+  
+   }
+}
+   else{
+   echo 'Your PassWord or Email is not Found';
    }
   }
   }

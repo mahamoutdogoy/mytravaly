@@ -1,4 +1,18 @@
+<?php
+ include"red.php";
+	session_start();
+
+	if(isset($_SESSION['cid']))
+	{
+		unset($_SESSION['cid']);
+	}
+	
+	$_SESSION['cid']=$_REQUEST['cid'];
+?>
+<!DOCTYPE html>
 <html>
+
+
 <head>
 	<title>Tasks</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -34,7 +48,11 @@
 
 </head>
 <body>
-<form action='' method='post'>
+
+
+	
+
+<div class="container-fluid">
 	<?php
 	include("../dbConnect.php"); ?>
 	<!-- Header Section -->
@@ -44,23 +62,29 @@
    <!--Sidebar and form section -->
    <div class="row">
         <!--Sidebar section -->
-        <div class="col-md-3"  >
+        <div class="col-md-2"  >
             <?php include("sidebar.php"); ?>
         </div>
 
+        
 
 		<!-- task details div-->
 	
-		<div class="col-md-5">
+		<div class="col-md-6" >
+			
 		<?php 
-			$task_list=mysqli_query($conn,"select TaskId,Task,DueDate,AssignTo,Priority,Status from task_details where ClientId='".$_REQUEST['cid']."' and Status!='COMPLETED'")or die(mysqli_error($conn)); ?>
-		
+			$task_list=mysqli_query($conn,"select TaskId,Task,DueDate,AssignTo,Priority,Status from task_details where ClientId='".$_REQUEST['cid']."' and Status NOT LIKE '%Completed%' and Status NOT LIKE '%Closed%' order by DueDate")or die(mysqli_error($conn)); ?>
+		<div>
+				
+				<i class="fas fa-chevron-circle-left  fa-2x" style="color: #5bc0de" onclick="window.location='index.php'" ></i>
+				
+			</div>
 		<!--top click here to section-->
-		<div class='alert alert-info alert-dismissible'>
-  			<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
- 		 	<strong><a href="completed_task.php?cid=<?php echo $_REQUEST['cid'] ; ?>" >Click Here</a> To View Completed Task</strong>
-		</div>
-	
+			<div class='alert alert-info alert-dismissible'>
+	  			<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+	 		 	<strong><a href="completed_task.php?cid=<?php echo $_REQUEST['cid'] ; ?>" >Click Here</a> To View Completed Task</strong>
+			</div>
+		<form action="" method="post">
 			<table style='width:500px'>
 	
 			<?php 
@@ -91,32 +115,29 @@
 					<br>
 					<?php $path="product_demo.php?cid=".$_REQUEST['cid']; ?>
 					
-						<img src='img/gallery.png' onclick="window.location='<?php echo $path;?>'" height='50px' width='50px' title='Product Demo'/>
+						<img src='img/Post Card (1).png' onclick="window.location='<?php echo $path;?>'" height='40px' width='40px' title='Product Demo'/>
 					
 					<?php $path="edit_task.php?cid=".$_REQUEST['cid']."&tid=".$row2['TaskId']; ?>
 						
-						<input type='button' class='btn btn-warning' onclick="window.location='<?php echo $path;?>'" value='Edit' text='".$row2['TaskId']."'/>
+						<input type='button' class='btn btn-warning' onclick="window.location='<?php echo $path;?>'" value='Edit' text='".$row2['TaskId']." title='Edit Task''/>
 						
 			
-						<input type='button' class='btn btn-danger id' text='<?php echo $row2['TaskId']; ?>' value='Close Task' onclick='d_task();'/>
-						<?php $path="leadtablepage.php"; ?>
-						<input type='button' class='btn btn-success' onclick="window.location='<?php echo $path;?>'"  value='Back' /></a>
-						<hr/></td></tr>
-			
-					<?php } 
-						
-							//onclick="javascript:history.back(-1);"
-						?>
+						<input type='button' class='btn btn-danger id' text='<?php echo $row2['TaskId']; ?>' value='Close Task' onclick='d_task();' title='Close Task'/>
+						</td>
+					</tr>
+			<?php } ?>
 
 				</table>
+				</form>
 						
 		</div>
+
 		<div class="col-md-4">
 			<?php include("Client_profile.php"); ?>
 		</div>
 	</div>
-
-	</form>
+</div>
+	
 
 </body>
 </html>
@@ -126,16 +147,15 @@
         var tid=$(this).attr("text");
 		var r=confirm("Are You Sure! \n You Will Not Be Able TO Recover This Task!");
 		
-if (r == true) {
-  $.post('jquery_called_function.php', { tid:tid}, function(data){
-					
-					alert('Task Closed Successfully...');
-					location.reload();
-                    //do after submission operation in DOM
-                });
-} else {
-  txt = "You pressed Cancel!";
-}
+	if (r == true) {
+	  $.post('jquery_called_function.php', { tid:tid}, function(data){
+						
+						alert('Task Closed Successfully...');
+						location.reload();
+	                    //do after submission operation in DOM
+	                });
+	}
+	 
 		
 	});
 });

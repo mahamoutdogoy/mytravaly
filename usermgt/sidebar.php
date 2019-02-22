@@ -127,85 +127,33 @@
                     &nbsp;&nbsp;Dashboard            
                    </a>
             </li>
+        <?php
+          $ur_sql = "SELECT privilege FROM users WHERE userid=9";
+          $ur_run = mysqli_query($con,$ur_sql);
+          $ur_rows = mysqli_fetch_assoc($ur_run);
+          $prvs=explode(',',$ur_rows['privilege']);
+          $count = count($prvs) - 1;
 
-            <li class="nav-item">
-                   <a href="../mail-using-server.php" class="nav-link">
-                       <i class="fa fa-list " style="color:#FFBA08"></i>   
-                       &nbsp;&nbsp;ResMail          
+
+          $sel_sql ="SELECT * FROM privileges";
+          $run_sql =mysqli_query($con,$sel_sql);
+          while ($rows = mysqli_fetch_assoc($run_sql)) {
+            $d_class='d-none';
+            for ($i=0 ; $i < $count; $i++ ) { 
+              if ($prvs[$i]==$rows['preid']) {
+                $d_class='d-block';
+                break;
+              }
+          }
+            echo "<li class='nav-item $d_class'>
+                   <a href='user_main1.php' class='nav-link'>
+                       <i class='fa fa-list' style='color:#FFBA08'></i>   
+                       &nbsp;&nbsp;$rows[prename]          
                       </a>
-               </li>
+               </li>";
+          }
 
-               <li class="nav-item">
-                       <a href="../leadtablepage.php" class="nav-link">
-                           <i class="fa fa-envelope " style="color:#E01A4F;"></i>   
-                           &nbsp;&nbsp;CRM         
-                          </a>
-                   </li>
-                   <li class="nav-item">
-                           <a href="../propertymenus.php" class="nav-link">
-                               <i class="fa fa-building" style="color:rgba(194, 36, 133, 0.747)"></i>   
-                               &nbsp;&nbsp;Property      
-                              </a>
-                       </li>
-                       <li class="nav-item">
-                               <a href="#" class="nav-link">
-                                   <i class="fa fa-envelope " style="color:green"></i>   
-                                   &nbsp;&nbsp;PMS         
-                                  </a>
-                           </li>   
-        </ul>
-
-
-
-
-
-        <ul class="navbar-nav flex-column">
-
-            <li class="nav-item text-uppercase text-muted">
-
-               
-            </li>
-            <li class="nav-items">
-                <a href="profitmaker.html" class="nav-link">
-                    <fa class="fa fa-home " style="color:red"></fa>   
-                    &nbsp;&nbsp;Profit Maker          
-                   </a>
-            </li>
-
-            <li class="nav-items">
-                   <a href="#" class="nav-link">
-                       <i class="fa fa-address-card " style="color:#06D6A0"></i>   
-                       &nbsp;&nbsp;Accounts        
-                      </a>
-               </li>
-
-               <li class="nav-item">
-                       <a href="#" class="nav-link">
-                           <i class="fa fa-envelope " style="color:#F7CB15"></i>   
-                           &nbsp;&nbsp;Social Media   
-                          </a>
-                   </li>
-                   <li class="nav-item">
-                           <a href="#" class="nav-link">
-                               <i class="fa fa-desktop " style="color:#740d06"></i>   
-                               &nbsp;&nbsp;Report      
-                              </a>
-                       </li>
-                       <li class="nav-item">
-                               <a href="#" class="nav-link">
-                                   <i class="fa fa-shopping-bag " style="color:#07775f"></i>   
-                                   &nbsp;&nbsp;MarketPlace         
-                                  </a>
-                           </li>
-
-
-                           <li class="nav-item">
-                                <a href="user_main1.php" class="nav-link">
-                                    <i class="fa fa-users " style="color:#a610e5"></i>   
-                                    &nbsp;&nbsp;User Management        
-                                   </a>
-                            </li>
-                                          
+        ?>     
                
              </ul>
          </nav>

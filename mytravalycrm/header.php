@@ -14,12 +14,12 @@
 	.row {
 		text-align: justify;
 	}
-	img[src="http://localhost/mytravaly/images/logo.png"] {
+	img[src="images/logo.png"] {
 	padding-top:-20px;
 	height:75px;
 		
 	}
-	img[src="http://localhost/mytravaly/images/logo.png"]:hover
+	img[src="images/logo.png"]:hover
 	ul.nav li {
 		padding-top:8px;
 	}
@@ -87,7 +87,7 @@ a:hover > .ico {
 <div class="container mb-3" onload="ccount();">
 	<div>
 		<div>
-			<a href=""><img src="http://localhost/mytravaly/images/logo.png" class="float-left" alt="" style="margin-left:-90px; "></a>
+			<a href=""><img src="images/logo.png" class="float-left" alt="" style="margin-left:-90px; "></a>
 		    <div id="top_menu">
 				<ul class="nav list-unstyled float-right">
 					<li class="nav-item"><a class="nav-link" href="#"><span><i class="fa fa-globe-asia"></i></span>&nbsp;Language</a></li>

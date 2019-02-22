@@ -1,5 +1,7 @@
+<?php session_start(); ?>
 <html>
 <head>
+	<title>Post Card</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 	
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
@@ -47,15 +49,16 @@
 	</div>
 	<div class="row">
 
-		<div class="col-md-3">
+		<div class="col-md-2">
 			<?php include("sidebar.php"); ?>
 		</div>
 		
 	<!-- product demo div-->
-	<div class="col-md-6">
+	<div class="col-md-7">
 		<div>
-			<?php $path="task.php?cid=".$_REQUEST['cid']; ?>
-			<input type="button" value="back" onclick="window.location='<?php echo $path; ?>'">
+			
+			<?php $path="window.location='task.php?cid=".$_REQUEST['cid']."'"; ?>
+				<i class="fas fa-chevron-circle-left  fa-2x" style="color: #5bc0de" onclick=<?php echo $path; ?> ></i>
 		</div>
 		<!-- Image Grid-->
 		<div id="img_block" >
@@ -127,10 +130,10 @@
 				</div>
 				
 				<div class='col-sm-3' align='center'>
-					 	<h4 ><span style='color:orange;'>Price from</span></h4> <br>
+					 	<h4 ><span style='color:orange;'>Special Offer</span></h4> <br>
 					 	<input type="number" id="Price" placeholder="Price" class="form-control" required="required" />
 					 	<br>
-					 	<input type='button' class='btn btn-warning' name='book' id="book" value="Send Product Card"  />
+					 	<input type='button' class='btn btn-warning' name='book' id="book" value="Send Post Card"  />
 				</div> <!--onclick="javascript: form.action='send_demo_mail.php?id='"-->
 		    </div>
 		</div>
@@ -149,6 +152,7 @@
          document.getElementById('product_card').style.display="";
          document.getElementById('img_block').style.display="none";
          document.getElementById('btn-view').style.display="";
+        
          document.getElementById('selected-image').src=img.src;
           document.getElementById('selected-image').alt=img.alt;
          
@@ -183,10 +187,10 @@
             }
             else
             {
-            	alert(eid+" "+desc+" "+price);
+            	alert("Sending Post Card  To : "+eid);
             $.post('send_product_demo.php',{ email:eid,desc:desc,price:price,img_src:img },function(data){
-            	alert("Product Card Sent Successfully...");
-            	location.reload();
+            	alert("Post Card Sent Successfully...");
+            	window.location="task.php?cid="+<?php echo $_REQUEST['cid']; ?>;
 
             });}
         });

@@ -1,4 +1,4 @@
-<?php
+	<?php
 session_start();
 
 include"connect.php";
@@ -40,6 +40,8 @@ if(isset($_POST['Login'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<!-- <link rel="icon" type="image/png" sizes="192x192"  href="fav.png"> -->
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">

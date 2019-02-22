@@ -1,3 +1,6 @@
+<?php
+ include"red.php";
+?>
 <html>
 <head>
 	<title>Completed Tasks</title>
@@ -44,17 +47,25 @@
    <!--Sidebar and form section -->
    <div class="row">
         <!--Sidebar section -->
-        <div class="col-md-3"  >
+        <div class="col-md-2"  >
             <?php include("sidebar.php"); ?>
         </div>
 
 
 		<!-- task details div-->
 	
-		<div class="col-md-5">
+		<div class="col-md-6">
 			<?php
-				$task_list=mysqli_query($conn,"select TaskId,Task,DueDate,AssignTo,Priority,Status from task_details where ClientId='".$_REQUEST['cid']."' and Status='COMPLETED'")or die(mysqli_error($conn)); ?>
+				$task_list=mysqli_query($conn,"select TaskId,Task,DueDate,AssignTo,Priority,Status from task_details where ClientId='".$_REQUEST['cid']."' and ( Status LIKE 'COMPLETED' or Status LIKE '%Closed%' )")or die(mysqli_error($conn)); ?>
+			<!-- back button -->
+			<div>
+			
+				<?php $path="window.location='task.php?cid=".$_REQUEST['cid']."'"; ?>
+				<i class="fas fa-chevron-circle-left  fa-2x" style="color: #5bc0de" onclick=<?php echo $path; ?> ></i>
+			</div>
+			
 			<!--top click here to section-->
+		
 		<div class='alert alert-info alert-dismissible'>
   			<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
  		 	<strong><a href="task.php?cid=<?php echo $_REQUEST['cid'] ; ?>" >Click Here</a> To View Pending Task</strong>
@@ -83,24 +94,11 @@
 				</tr>
 				<tr>
 					<td>Status</td>
-					<td><?php echo $row2['Status']; ?></td>
+					<td><?php echo $row2['Status']; ?> </td>
+
 				</tr>
-				<tr>	
-					<!--<td colspan='2' align='right'>
-					<br>
-					<?php $path="product_demo.php?cid=".$_REQUEST['cid']; ?>
-					<a href='<?php echo $path;?>'>
-						<img src='img/gallery.png' height='50px' width='50px' title='Product Demo'/>
-					</a>
-					<?php $path="edit_task.php?cid=".$_REQUEST['cid']."&tid=".$row2['TaskId']; ?>
-						<a href='<?php echo $path ;?>'>
-						<input type='button' class='btn btn-warning' value='Edit' text='".$row2['TaskId']."'/>
-						</a>
-			
-						<input type='button' class='btn btn-danger id' text='<?php echo $row2['TaskId']; ?>' value='Close Task' onclick='d_task();'/>-->
-						<a href='leadtablepage.php'>
-						<input type='button' class='btn btn-success' value='Back' /></a>
-						<hr/></td></tr>
+				<tr><td colspan="2"><br><hr> </td></tr>
+				
 			
 					<?php } 
 						

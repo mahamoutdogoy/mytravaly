@@ -1,6 +1,6 @@
 
 <?php
-
+ include"red.php";
 
 if(isset($_POST['submit']))
 {
@@ -23,7 +23,7 @@ if(isset($_POST['submit']))
 		
 		echo "<script>
 				alert('Multiple Task Added Successfully....');
-				document.location='leadtablepage.php'
+				document.location='index.php'
 				</script>";
 	}
 }

@@ -1,6 +1,7 @@
 <?php
 
 	include("../phpmailer/sendemail.php");
+	 include"red.php";
 	$email
 	$temp=send_mail('prashanththunder007@gmail.com',"subject","body");
 	if($temp==1)

@@ -16,7 +16,7 @@
 <body>
 	<!--Header part-->
 	<?php
-		include"user_header1.php";
+		include"user_header2.php";
 	?>
 	<div class="row">
 		<?php
@@ -25,7 +25,11 @@
 	
 	<div class="container">
 		<div class="card col-md-12">
-				<div class="card-header"><h3><i class="fas fa-user-alt"> </i> Attendance list from to</h3></div>	
+				<div class="card-header"><h3><i class="fas fa-user-alt"> </i> Attendance list from <?php if (isset($_POST['datefrom'])) {
+					echo $_POST['datefrom'];
+				} ?> to <?php if (isset($_POST['dateto'])) {
+					echo $_POST['dateto'];
+				}?></h3></div>	
 				<div class="card-body">
 					<table class="table table-sm col-md-12">
 						<thead>
@@ -38,83 +42,28 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>01-0-2019</td>
-								<td>01-0-2019 05:40:00</td>
-								<td>01-0-2019 05:40:12</td>
-								<td>00:00:12</td>
-								<td>Present</td>
-							</tr>
-							<tr>
-								<td>01-0-2019</td>
-								<td>01-0-2019 05:40:00</td>
-								<td>01-0-2019 05:40:12</td>
-								<td>00:00:12</td>
-								<td>Present</td>
-							</tr>
-							<tr>
-								<td></td>
-								<td>01-0-2019 05:40:00</td>
-								<td>01-0-2019 05:40:12</td>
-								<td>00:00:12</td>
-								<td>Present</td>
-							</tr>
-							<tr>
-								<td></td>
-								<td>01-0-2019 05:40:00</td>
-								<td>01-0-2019 05:40:12</td>
-								<td>00:00:12</td>
-								<td>Present</td>
-							</tr>
-							<tr>
-								<td>01-05-2019</td>
-								<td>01-0-2019 05:40:00</td>
-								<td>01-0-2019 05:40:12</td>
-								<td>00:00:12</td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>01-0-2019</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>Absent</td>
-							</tr>
-							<tr>
-								<td>01-0-2019</td>
-								<td>01-0-2019 05:40:00</td>
-								<td>01-0-2019 05:40:12</td>
-								<td>00:00:12</td>
-								<td>Holiday</td>
-							</tr>
-							<tr>
-								<td>01-0-2019</td>
-								<td>01-0-2019 05:40:00</td>
-								<td>01-0-2019 05:40:12</td>
-								<td>00:00:12</td>
-								<td>Present</td>
-							</tr>
-							<tr>
-								<td></td>
-								<td>01-0-2019 05:40:00</td>
-								<td>01-0-2019 05:40:12</td>
-								<td>00:00:12</td>
-								<td>Present</td>
-							</tr>
-							<tr>
-								<td></td>
-								<td>01-0-2019 05:40:00</td>
-								<td>01-0-2019 05:40:12</td>
-								<td>00:00:12</td>
-								<td>Present</td>
-							</tr>
-							<tr>
-								<td>01-05-2019</td>
-								<td>01-0-2019 05:40:00</td>
-								<td>01-0-2019 05:40:12</td>
-								<td>00:00:12</td>
-								<td></td>
-							</tr>
+							<?php
+								if (isset($_POST['report'])) {
+									$rpt_sql = "SELECT * FROM attendance WHERE attdate BETWEEN '$_POST[datefrom]' AND '$_POST[dateto]'";
+									$rpt_run = mysqli_query($con, $rpt_sql);
+									while ($rpt_rows = mysqli_fetch_assoc($rpt_run)) {
+										$timein = date($rpt_rows['timein']);
+										$timeout = date($rpt_rows['timeout']);
+										$datetime1 = new DateTime($timein);
+										$datetime2 = new DateTime($timeout);
+										$interval = $datetime1->diff($datetime2);
+										$work = $interval->format('%H:%I:%S');
+										echo "<tr>
+								<td>$rpt_rows[attdate]</td>
+								<td>$rpt_rows[timein]</td>
+								<td>$rpt_rows[timeout]</td>
+								<td>$work</td>
+								<td>$rpt_rows[attstatus]</td>
+							</tr>";
+									}
+								}								
+
+							?>
 							
 						</tbody>
 					</table>

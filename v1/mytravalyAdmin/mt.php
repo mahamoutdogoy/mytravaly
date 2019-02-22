@@ -6,14 +6,28 @@ session_start();
 {
 include("../connect.php");
 /*include("../usercheck.php");*/
-/*include"../fetch.php";*/
+include"fetch.php";
 }
 ?>
+<?php 
+ if(!isset($_SESSION['user']))
+{
+    // not logged in
+    header('Location:../index.php');
+    exit();
+}
+ ?>
+
+
+        
+
 
 <!doctype html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
+
+  <link rel="icon" href="fav.png" type="image/png" sizes="16x16">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -24,7 +38,7 @@ include("../connect.php");
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
-    <title>Mytravaly</title>
+    <title>Dashboard</title>
   </head>
 
 
@@ -71,17 +85,19 @@ include("../connect.php");
 
          <ul class="navbar-nav links d-md-none">
              <li class="nav-item">
-                 <a href="#" class="nav-link">
-                     <i class="fa fa-home text-muted mr-3"></i>   
-                     Dashboard            
+                 <a href="http://localhost/mytravaly/v1/mytravalyAdmin/mt.php" class="nav-link">
+                       
+
+                      <i class="fa fa-home " style="color:#150578"></i>   
+                    &nbsp;Dashboard         
                 </a>
              </li>
 
              <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fa fa-list text-muted mr-3"></i>   
-                        RestMail          
-                    </a>
+                    <a href="../mail-using-server.php" class="nav-link">
+                       <i class="fa fa-list " style="color:#FFBA08"></i>   
+                       &nbsp;ResMail          
+                      </a>
             </li>
 
                 <li class="nav-item">
@@ -91,10 +107,10 @@ include("../connect.php");
                          </a>
                  </li>
                  <li class="nav-item">
-                         <a href="#" class="nav-link">
-                         <i class="fa fa-desktop text-muted mr-3"></i>   
-                                Property        
-                         </a>
+                          <a href="../property1/index.php" class="nav-link">
+                               <i class="fa fa-building " style="color:rgba(194, 36, 133, 0.747)"></i>   
+                               &nbsp;&nbsp;Property      
+                              </a>
                  </li>
                  <li class="nav-item">
                      <a href="#" class="nav-link">
@@ -104,7 +120,115 @@ include("../connect.php");
                  </li>
                                            
                 
-         </ul>
+         
+
+            
+
+               
+            </li>
+            <li class="nav-items">
+                <a href="profitmaker.html" class="nav-link">
+                    <fa class="fa fa-home " style="color:red"></fa>   
+                    &nbsp;Profit Maker          
+                   </a>
+            </li>
+
+            <li class="nav-items">
+                   <a href="#" class="nav-link">
+                       <i class="fa fa-address-card " style="color:#06D6A0"></i>   
+                       &nbsp;&nbsp;Accounts        
+                      </a>
+               </li>
+
+               <li class="nav-item">
+                       <a href="#" class="nav-link">
+                           <i class="fa fa-envelope " style="color:#F7CB15"></i>   
+                           &nbsp;&nbsp;Social Media   
+                          </a>
+                   </li>
+                   <li class="nav-item">
+                           <a href="#" class="nav-link">
+                               <i class="fa fa-desktop " style="color:#740d06"></i>   
+                               &nbsp;&nbsp;Report      
+                              </a>
+                       </li>
+                       <!-- <li class="nav-item">
+                               <a href="#" class="nav-link">
+                                   <i class="fa fa-shopping-bag " style="color:#07775f"></i>   
+                                   &nbsp;&nbsp;MarketPlace         
+                                  </a>
+                           </li>
+
+
+
+                           <li class="nav-item">
+                               <a href="#" class="nav-link">
+                                   <i class="fa fa-shopping-bag " style="color:#07775f"></i>   
+                                   &nbsp;&nbsp;Pay Plans       
+                                  </a>
+                           </li>
+
+
+
+                           <li class="nav-item">
+                               <a href="#" class="nav-link">
+                                   <i class="fa fa-shopping-bag " style="color:#07775f"></i>   
+                                   &nbsp;&nbsp;Payment        
+                                  </a>
+                           </li>
+
+
+
+                           <li class="nav-item">
+                               <a href="#" class="nav-link">
+                                   <i class="fa fa-shopping-bag " style="color:#07775f"></i>   
+                                   &nbsp;&nbsp;Log Viewer        
+                                  </a>
+                           </li>
+
+
+
+                           <li class="nav-item">
+                               <a href="#" class="nav-link">
+                                   <i class="fa fa-shopping-bag " style="color:#07775f"></i>   
+                                   &nbsp;&nbsp;Setting       
+                                  </a>
+                           </li>
+
+
+
+                           <li class="nav-item">
+                               <a href="#" class="nav-link">
+                                   <i class="fa fa-shopping-bag " style="color:#07775f"></i>   
+                                   &nbsp;&nbsp;Contact       
+                                  </a>
+                           </li>
+
+
+                           <li class="nav-item">
+                               <a href="#" class="nav-link">
+                                   <i class="fa fa-shopping-bag " style="color:#07775f"></i>   
+                                   &nbsp;&nbsp;Support       
+                                  </a>
+                           </li>
+
+                           <li class="nav-item">
+                               <a href="#" class="nav-link">
+                                   <i class="fa fa-shopping-bag " style="color:#07775f"></i>   
+                                   &nbsp;&nbsp;Organizations       
+                                  </a>
+                           </li>
+
+
+                           <li class="nav-item">
+                                <a href="../usermgt/user_main1.php" class="nav-link">
+                                    <i class="fa fa-users " style="color:#a610e5"></i>   
+                                    &nbsp;&nbsp;User Management        
+                                   </a>
+                            </li>
+                                           -->
+               
+             </ul>
 
 
           <!---------- nav icons ----------->
@@ -274,7 +398,7 @@ include("../connect.php");
                                 <i class="fa fa-users body-icon"></i>
         
                                 <div class="side-text align-self-center">
-                                <h4><?php echo number_format($users); ?> NEW</h4
+                                <h4><?php echo number_format($mt); ?> NEW</h4
                                     <h5>Users</h5>
                                 </div>
                             </div>
@@ -419,7 +543,7 @@ include("../connect.php");
                                     <i class="fa fa-users body-icon"></i>
             
                                     <div class="side-text align-self-center">
-                                    <h4><?php echo number_format($users); ?></h4>
+                                    <h4><?php echo number_format($mt); ?></h4>
                                         <h5>Verified users</h5>
                                     </div>
                                 </div>
@@ -622,7 +746,7 @@ include("../connect.php");
     <!------------- toggler button --------------------------->
     <script>
       $(".navbar-toggler").html(
-        '<i class="fa fa-arrow-down fa-3x text-white"></i>'
+        '<i class="fa fa-arrow-down fa-3x text-red"></i>'
       );
     </script>
   </body>

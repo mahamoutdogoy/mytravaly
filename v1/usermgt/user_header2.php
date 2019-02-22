@@ -1,9 +1,13 @@
 <!--Connection to database-->
 <?php
+ include"red.php";
+  date_default_timezone_set("Asia/Kolkata");
+  $server = "localhost";
+  $user = "root";
+  $pwd = "";
+  $db = "mytravaly";
 
- include"../connect.php";
-
-
+  $con = mysqli_connect($server,$user,$pwd,$db);
 ?>
 
 <!--Confirmation function-->

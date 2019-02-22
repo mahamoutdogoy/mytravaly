@@ -1,3 +1,4 @@
+<?php  include"red.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +30,7 @@
 	<div class="container">
 			<div class='row'>
 		<?php
-			$sel_sql = "SELECT * FROM holidays";
+			$sel_sql = "SELECT * FROM holidays ORDER BY holid DESC";
 			$run=mysqli_query($con, $sel_sql);
 			$c = 0;
 			while ($rows = mysqli_fetch_assoc($run)) {

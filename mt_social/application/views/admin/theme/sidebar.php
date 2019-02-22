@@ -35,17 +35,17 @@
           </li> <!-- end settings -->
 
           <li class="treeview">
-            	<a href="#">
-            	  	<i class="fa fa-paypal"></i> <span><?php echo $this->lang->line("Payment"); ?></span>
-            	  	<i class="fa fa-angle-left pull-right"></i>
-            	</a>
-            	<ul class="treeview-menu">
-            	  	<li><a href="<?php echo site_url()."payment/payment_dashboard_admin"; ?>"> <i class="fa fa-dashboard"></i> <?php echo $this->lang->line("Dashboard"); ?></a></li>
-            	  	<li><a href="<?php echo site_url()."payment/package_settings"; ?>"><i class="fa fa-cube"></i> <?php echo $this->lang->line("Package management"); ?></a></li>
-            	  	<li><a href="<?php echo site_url()."payment/payment_setting_admin"; ?>"><i class="fa fa-cog"></i> <?php echo $this->lang->line("Payment Settings"); ?></a></li>
-            	  	<li><a href="<?php echo site_url()."payment/admin_payment_history"; ?>"><i class="fa fa-history"></i> <?php echo $this->lang->line("Payment History"); ?></a></li>
-            	</ul>
-      	  </li>
+              <a href="#">
+                  <i class="fa fa-paypal"></i> <span><?php echo $this->lang->line("Payment"); ?></span>
+                  <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                  <li><a href="<?php echo site_url()."payment/payment_dashboard_admin"; ?>"> <i class="fa fa-dashboard"></i> <?php echo $this->lang->line("Dashboard"); ?></a></li>
+                  <li><a href="<?php echo site_url()."payment/package_settings"; ?>"><i class="fa fa-cube"></i> <?php echo $this->lang->line("Package management"); ?></a></li>
+                  <li><a href="<?php echo site_url()."payment/payment_setting_admin"; ?>"><i class="fa fa-cog"></i> <?php echo $this->lang->line("Payment Settings"); ?></a></li>
+                  <li><a href="<?php echo site_url()."payment/admin_payment_history"; ?>"><i class="fa fa-history"></i> <?php echo $this->lang->line("Payment History"); ?></a></li>
+              </ul>
+          </li>
 
         </ul>
       </li>

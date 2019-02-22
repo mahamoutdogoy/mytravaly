@@ -25,34 +25,45 @@
   
   <div class="container">
     <!--Creating new notice-->
-    <div class="card mb-4">
-      <div class="card-header">
-        <h3 "> <i class="far fa-edit"></i> Create new Notice</h3>
+  <div class="modal" id="notModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header" style='background:#f15025;color:white'>
+        <div class="modal-title"><h3 "> <i class="far fa-edit"></i> Create Notice</h3></div>
+        <button class='close' data-dismiss='modal' style='margin-left: 40%'>&times;</button>
         <hr>
       </div>
-      <div class="card-body">
-        <form method="post" style="margin-left: 10%" class="col-md-8">
-          <div class="form-group form-inline">
-            <label for="" style="margin-left: 10%">Notice Title &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <input type="text" name="title" class="form-control mx-auto" required placeholder="Designation name" style="width: 65%;">
-          </div>
-          <div class="form-group form-inline">
-            <label for="" style="margin-left: 10%">Notice Content</label>
-            <textarea name="content" id="" rows="10" required class="form-control mx-auto" required placeholder="Notice content" style="width: 65%;"></textarea>
-          </div>
-        </div>
-        <div class="footer">
-          <div class="form-group" class="text-center" style="margin-left: 50%">
+      <div class="modal-body">
+        <form method="POST" class="col-md-12">
+          <table class="table table-lg">
+          <tr >
+            <td><label for="">Notice Title</label></td>
+            <td><input type="text" name="title" class="form-control mx-auto" required placeholder="Designation name"></td>
+          </tr>
+          <tr >
+            <td><label for="">Notice Content</label></td>
+            <td><textarea name="content" id="" rows="10" required class="form-control mx-auto" required placeholder="Notice content"></textarea></td>
+          </tr>
+        </table>
+          <div class="form-group text-center mx-auto">
             <input type="submit" name="createNotice" value="Create" class=" btn btn-success">
           </div>
         </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" data-dismiss="modal" style='background:#f15025;color:white'>Close</button>
+      </div>
+
     </div>
-    </div>
+  </div>
+</div>
+    <button button type="button" class="btn btn-warning" data-toggle="modal" data-target="#notModal" data-backdrop='static' data-keyboard='false' style="margin: 20px;"><i class="fas fa-plus"></i> Create New Notice</button>
+
 
     <!-- Listing the notices-->  
     <div class="row">
       <?php
-        $sel_sql = "SELECT * FROM notices";
+        $sel_sql = "SELECT * FROM notices ORDER BY notid DESC";
         $run =mysqli_query($con, $sel_sql);
         while ($rows = mysqli_fetch_assoc($run)) {
           # code... 

@@ -1,4 +1,5 @@
 <?php
+ include"red.php";
 	session_start();
 	$_SESSION['cid']=$_REQUEST['cid'];
 

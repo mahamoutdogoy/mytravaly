@@ -1,20 +1,27 @@
 <html lang="en">
 <head>
-  <title> Enquirer </title>
+  <title> Enquiry </title>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  
+  
   <link rel="stylesheet" type="text/css" href="main.css">
-  <meta charset="utf-8">
-    
+  
   <script type="text/javascript">
         function preventBack() { window.history.forward(); }
         setTimeout("preventBack()", 0);
         window.onunload = function () { null };
   </script>
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   
   <link rel="stylesheet" type="text/css" href="first.css">
 
   <script type="text/javascript">
+    
       
       //function for date calculation
       function myfunction() {
@@ -62,6 +69,7 @@
 </style>
 </head>
 <body >
+   <div class="container-fluid">
   <!--<div class="text-center" style="width:85%"></div> -->
   <!-- Header Section -->
    <?php  include("header.php")?>
@@ -70,11 +78,18 @@
    <!--Sidebar and form section -->
    <div class="row">
         <!--Sidebar section -->
-        <div class="col-md-3"  >
+        <div class="col-md-2"  >
             <?php include("sidebar.php"); ?>
         </div>
         <!--form section-->
         <div class="col-md-9">
+          <div>
+        
+        <i class="fas fa-chevron-circle-left  fa-2x" style="color: #5bc0de" onclick="window.location='index.php'" ></i>
+        
+      </div>
+          <div class="row">
+           
           <form method="POST" action="enquiry.php">
       
                  <table cellpadding="20" >
@@ -120,7 +135,7 @@
                           <option value"call">Call</option>
                             <option value="Email">Email</option>
                             <option value="Message">Message</option>
-                            <option value="Product Demo">Product Demo</option>
+                            <option value="Post Card">Post Card</option>
                             </select>
                         </td>
                          <td><label class="" for="lead"> Lead Source</label></td>
@@ -129,7 +144,10 @@
                             <option value="Referraleferral">Referral</option>
                             <option value="Advertisement">Advertisement</option>
                             <option value="Newspaper">Newspaper</option>
-                            <option value="Email">Email campaign</option>
+                            <option value="Email">Email Campaign</option>
+                            <option value="Direct">Direct</option>
+                            <option value="Agent">Agent</option>
+                            <option value="By Phone">By Phone</option>
                             </select>
                         </td>
                     </tr>
@@ -152,7 +170,7 @@
                             </select>
                           </td>
                           <td><label class="" for="status">Status </label></td>
-                        <td><input type="text" list="status" name="status" value="NOT YET STARTED" class=" form-control" readonly /></td>
+                        <td><input type="text" list="status" name="status" value="Not Yet Started" class=" form-control" readonly /></td>
                       </tr>
                   <tr>
                         <td><label class="" for="remarks" >Remarks</label></td>
@@ -175,10 +193,7 @@
 </div>
 <!--end of sidebar and form section -->
 </div>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    
+  </div>
   </body>
   
 </html>

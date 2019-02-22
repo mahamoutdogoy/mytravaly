@@ -1,5 +1,5 @@
 <?php
- 
+  include"red.php";
 if($_POST['tid'] )
     {
     

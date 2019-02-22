@@ -1,7 +1,8 @@
 <?php
 	
   include('../dbConnect.php');
-  
+  include('../phpmailer/sendemail.php');
+	
   	if(isset($_POST['submit']))
    	{
       $date=date("d/m/Y");
@@ -36,18 +37,22 @@
 		
     	mysqli_query($conn,"insert into task_details (ClientId,Task,Priority,AssignTo,Status,Description,
 		Remarks,DueDate) values ('$cid[0]','$task','$priority','$assignto',
-		'NOT YET STARTED','$description','$remarks','$duedate')") or die(mysqli_error($conn));
+		'Not Yet Started','$description','$remarks','$duedate')") or die(mysqli_error($conn));
 		
 		//inserting to task_details table
 		
     	$sql = "SELECT email FROM employee where name='".$_POST['assignto']."';";
-		$eid_list=mysqli_query($con,$sql);
+		$eid_list=mysqli_query($conn,$sql);
 		$eid=mysqli_fetch_array($eid_list);
 		
 		//sending mail
-		mail($eid[0],"Mail to Assign Work","Assigned WOrk");
-    	echo "<script>alert('Data Saved Successful And Mail Sent Successfully');</script>";
+		$temp=send_mail($eid['email'],"Mail to Assign Work","Assigned Work");
+    	//echo "<script>alert('Data Saved Successful And Mail Sent Successfully');</script>";
     	//page redirection 
-		header("location:leadtablepage.php");
+		header("Location:index.php");
+   }
+   else
+   {
+   	echo "error: data not added Try onceagain...";
    }
 ?>

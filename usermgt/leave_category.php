@@ -28,33 +28,43 @@
 
 	<!--Create User form-->
 	<div class="container">
-		<div class="card">
-			<div class="card-header">
-				<h3 "> <i class="far fa-edit"></i> Create Category</h3>
+<div class="modal" id="catModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+    	<div class="modal-header" style='background:#f15025;color:white'>
+				<div class="modal-title"><h3 "> <i class="far fa-edit"></i> Create Category</h3></div>
+				<button class='close' data-dismiss='modal' style='margin-left: 40%'>&times;</button>
 				<hr>
 			</div>
-			<div class="card-body">
-				<form method="POST" style="margin-left: 20%" class="col-md-8">
-					<div class="form-group form-inline">
-						<label for="" style="float: left;">Category Name &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  </label><div class="clearfix"></div>
-						<input type="text" name="catname" class="form-control mx-auto" required placeholder="Category name" style="width: 75%;">
-					</div>
-					<div class="form-group form-inline">
-						<label for="" style="float: left;">Leave policy &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  </label><div class="clearfix"></div>
-						<input type="text" name="catpolicy" class="form-control mx-auto" required placeholder="Category policy" style="width: 75%;">
-					</div>
-					<div class="form-group  form-inline">
-						<label for="" >Maximum in a year &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; </label>
-						<input type="number" name="maxdays" class="form-control mx-auto" required placeholder="Maximum in a year" style="width: 75%;">
-					</div>
-				</div>
-				<div class="footer">
+      <div class="modal-body">
+				<form method="POST" class="col-md-12">
+					<table class="table table-lg">
+					<tr >
+						<td><label for="" >Category Name </label></td>
+						<td><input type="text" name="catname" class="form-control mx-auto" required placeholder="Category name" ></td>
+					</tr>
+					<tr >
+						<td><label for="" >Leave policy  </label></td>
+						<td><textarea type="text" name="catpolicy" rows="8" class="form-control mx-auto" required placeholder="Category policy" ></textarea></td>
+					</tr>
+					<tr >
+						<td><label for="" >Maximum in a year</label></td>
+						<td><input type="number" name="maxdays" class="form-control mx-auto" required placeholder="Maximum in a year"></td>
+					</tr>
+				</table>
 					<div class="form-group" class="text-center" style="margin-left: 50%">
 						<input type="submit" name="createCat" value="Create" class=" btn btn-success">
 					</div>
 				</form>
-				</div>
-		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" data-dismiss="modal" style='background:#f15025;color:white'>Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+		<button button type="button" class="btn btn-warning" data-toggle="modal" data-target="#catModal" data-backdrop='static' data-keyboard='false' style="margin: 20px;"><i class="fas fa-plus"></i> Create New Category</button>
 		<div class="card" style="margin-top: 25px;">
 				<div class="card-header"><h3><i class="fas fa-user-alt"> </i> Leave Types List</h3></div>	
 				<div class="card-body">
@@ -70,7 +80,7 @@
 						</thead>
 						<tbody>
 								<?php
-								$sel_sql = "SELECT * FROM leave_category";
+								$sel_sql = "SELECT * FROM leave_category ORDER BY catid DESC";
 								$run=mysqli_query($con, $sel_sql);
 								$c = 0;
 								while ($rows = mysqli_fetch_assoc($run)) {

@@ -1,10 +1,16 @@
+<?php
+if(!isset($_SESSION['user'])){ //if login in session is not set
+    header("Location:../index.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Travely Travel</title>
+	<title>CRM</title>
 
 
+  <link rel="icon" href="fav.png" type="image/png" sizes="16x16">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="style.css">
 

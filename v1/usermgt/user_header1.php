@@ -1,9 +1,13 @@
 <!--Connection to database-->
 <?php
+include"red.php";
+  date_default_timezone_set("Asia/Kolkata");
+  $server = "localhost";
+  $user = "root";
+  $pwd = "";
+  $db = "mytravaly";
 
- include"../connect.php";
-
-
+  $con = mysqli_connect($server,$user,$pwd,$db);
 ?>
 
 <!--Confirmation function-->
@@ -26,7 +30,7 @@
 <div class="container mb-3 col-md-12">
   <div class="row">
     <div>
-      <a href=""><img src="../mytravalyAdmin/images/logo1.png" class="float-left"></a>
+      <a href=""><img src="images/logo.png" class="float-left"></a>
     </div>
     <div class="clearfix"></div>
 
