@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Mytravaly</title>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
@@ -196,13 +197,13 @@
 <?php
 	if(isset($_POST['punchinout'])){
 		$thisdate;
-		$sel_p ="SELECT punchin FROM users WHERE userid = 7";
-		$run_p = mysqli_query($con, $sel_p);
-		$p_rows = mysqli_fetch_assoc($run_p);
+		$a_sel_p ="SELECT punchin FROM users WHERE userid = 7";
+		$a_run_p = mysqli_query($con, $a_sel_p);
+		$p_rows = mysqli_fetch_assoc($a_run_p);
 		if ($p_rows['punchin'] == 0) {
 			$attdate = date('Y-m-d');
 			$timein = date('H:i');
-			$sel_att1 ="SELECT *  FROM attendance";
+			$sel_att1 ="SELECT *  FROM attendance WHERE attuserid = 7";
 			$run_att1 = mysqli_query($con, $sel_att1);
 			$a=mysqli_fetch_assoc($run_att1);
 			if(gettype($a)!="NULL"){

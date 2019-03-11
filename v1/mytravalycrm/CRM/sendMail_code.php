@@ -5,7 +5,6 @@
 	require_once('../phpmailer/sendemail.php');
 
 	require_once("../dbConnect.php");
-	 include"red.php";
 	
 	//sending mail for multiple selected clients in crm lead page
 	if(isset($_POST['send_mul_mail']))

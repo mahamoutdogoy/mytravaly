@@ -1,5 +1,4 @@
-<?php session_start();
- include"red.php"; ?>
+<?php session_start(); ?>
 <html>
 <head>
 	<title>Post Card</title>

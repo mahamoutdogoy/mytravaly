@@ -1,6 +1,6 @@
 
 <?php
- include"red.php";
+
 
 if(isset($_POST['submit']))
 {

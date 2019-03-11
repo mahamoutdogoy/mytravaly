@@ -7,6 +7,7 @@
   $db = "mytravaly";
 
   $con = mysqli_connect($server,$user,$pwd,$db);
+  mysqli_query($con, "SET SESSION sql_mode = ''");
 ?>
 
 <!--Confirmation function-->
@@ -41,7 +42,6 @@
         <li class="nav-item"><a href= "user_pwd_change.php" class="nav-link" >Change Password</a></li>
         <li class="nav-item"><a href="all_hol_user.php" class="nav-link">All Holidays</a></li>
         <li class="nav-item"><a href="user_notice.php" class="nav-link">Notices</a></li>
-        <li class="nav-item " style="margin-left: 250px;"><a href="#" class="nav-link">LogOut</a></li>
        </ul>
     </div>
   </div>

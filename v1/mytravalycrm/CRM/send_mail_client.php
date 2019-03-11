@@ -2,7 +2,6 @@
 	session_start();
 	include("../dbConnect.php");
 	include('../phpmailer/sendemail.php');
-	 include"red.php";
 
 	if(isset($_POST['sendMail']) && isset($_SESSION['cid']))
 	{
@@ -13,8 +12,9 @@
 
 	if(isset($_POST['add_send_mail']) && isset($_SESSION['cid']))
 	{
+		
 		$sub=trim(mysqli_real_escape_string($conn, strip_tags($_POST['subject'])));
-        $body=trim(mysqli_real_escape_string($conn, strip_tags($_POST['body'])));
+		$body=trim(mysqli_real_escape_string($conn, strip_tags($_POST['body'])));
 
 		$query="insert into mail_template (HotelId,Subject,Body) values (1,'$sub','$body');";
 		mysqli_query($conn,$query) or die(mysqli_error($conn));

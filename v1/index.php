@@ -1,30 +1,48 @@
-	<?php
+<?php
 session_start();
 
 include"connect.php";
 if(isset($_POST['Login'])){
-	$empid=mysqli_real_escape_string($con,$_POST['empid']);
+	$email=mysqli_real_escape_string($con,$_POST['email']);
 	$password=mysqli_real_escape_string($con,$_POST['password']);
 	if(empty($email)&&empty($password)){
 	$error= 'Fields are Mandatory';
 	}else{
-   $result=mysqli_query($con,"SELECT * FROM mt WHERE empid='$empid' AND password='$password'");
+   $result=mysqli_query($con,"SELECT * FROM users WHERE email='$email' AND passwd='$password'");
    $row=mysqli_fetch_assoc($result);
    $count=mysqli_num_rows($result);
    if($count==1){
 	
 	$_SESSION['user']=array(
-	 'empid'=>$row['empid'],	
+	 'userid'=>$row['userid'],	
 	 'username'=>$row['username'],
-	 
+	 'hotelid'=>$row['hotelid'],
+	 'name'=>$row['name'],
 	 'email'=>$row['email'],
-	 
-	 'password'=>$row['password'],
-
+	 'file'=>$row['file'],
+	 'passwd'=>$row['passwd'],
+     'role'=>$row['role']
 	
 	 );
+	 $role=$_SESSION['user']['role'];
+	switch($role){
+	case 'user':
+	header('location:usermgt/attendance.php');
+	break;
+	case 'superadmin':
 	header('location:mytravalyAdmin/mt.php');
+	break;
+	case 'admin':
+	header('location:mytravalyAdmin/mt.php');
+	break;
+   }
+	//header('location:mytravalyAdmin/mt.php');
 	 
+   }
+   else
+   {
+         header('location:index.php');
+
    }
    /*}else{
    $error='Your PassWord or Email is not Found';
@@ -87,7 +105,7 @@ if(isset($_POST['Login'])){
 				<label for="employeeId">
 					User Name
 				</label>
-				<input type="text" name="empid" class="form-control" required>
+				<input type="text" name="email" class="form-control" required>
 				<br>
 				
 				<label for="password">

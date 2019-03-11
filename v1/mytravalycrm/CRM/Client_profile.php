@@ -5,7 +5,6 @@
 		if(!$conn)
 		{
 			include("../dbConnect.php");
-       include"red.php";
 		}
 		$list=mysqli_query($conn,"select FirstName,LastName,Email,Phone from client_details	where ClientId='".$_REQUEST['cid']."';")or die(mysqli_error($conn));
 		
@@ -143,11 +142,19 @@ function myfunction() {
 							<select id="task" class=" float-right" name="assignto" required>
 		                            <option value='' disabled selected>---select---</option>
 		                              <?php
-		                           
-		                            	$emp_list=mysqli_query($conn,"select name,email from employee") or die(mysqli_error($conn));
-		                            	while ($row3=mysqli_fetch_assoc($emp_list)) {
-		                               		 echo "<option value='".$row3['name']."'>".$row3['name']."</option>";
-		                               		}
+		                                if(strcasecmp($_SESSION['user']['role'], 'SuperAdmin')==0 || strcasecmp($_SESSION['user']['role'], 'Admin')==0)
+                                    {
+                                        $emp_list=mysqli_query($conn,"select name,email from users where hotelid='".$_SESSION['user']['hotelid']."';") or die(mysqli_error($conn));
+                                        while ($row3=mysqli_fetch_assoc($emp_list)) {
+                                       echo "<option value='".$row3['name']."'>".$row3['name']."</option>";
+                                      }
+                                    }
+                                    else
+                                    {
+                                      echo "<option value='".$_SESSION['user']['name']."' selected='selected' >".$_SESSION['user']['name']."</option>";
+                                    }
+		                            
+		                            	
 		                            ?>
 		                           
 		                            </select>
@@ -309,7 +316,7 @@ function myfunction() {
     <div class="container p-2">
       <div id="carouselExampleControls" class="carousel slide" >
         <div class="carousel-inner">
-          <?php $mailtemplate=mysqli_query($conn,"select * from mail_template where HotelId=0 or HotelId=1 ");
+          <?php $mailtemplate=mysqli_query($conn,"select * from mail_template where HotelId=0 or HotelId='".$_SESSION['user']['hotelid']."'") or die(mysqli_error($conn));
                 $no_temp=mysqli_num_rows($mailtemplate);
                $n=0;
               while($template=mysqli_fetch_array($mailtemplate))

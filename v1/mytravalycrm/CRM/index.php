@@ -1,14 +1,15 @@
-<?php
-include"red.php";
+<?php 
+  session_start();
+  if(!isset($_SESSION['user']))
+  {
+    header("location:../");
+  }
 ?>
 <html>
 <head>
-
-  <link rel="icon" href="fav.png" type="image/png" sizes="16x16">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <title>CRM</title>
     <script>
         $(document).ready( function () {
     $('#myTable').DataTable();
@@ -73,10 +74,17 @@ include"red.php";
         </tfoot>-->
         <tbody>
             <?php include("../dbConnect.php");
-                $query=mysqli_query($conn,"select * from client_details");
+                $query=mysqli_query($conn,"select * from client_details where hotelid='".$_SESSION['user']['hotelid']."'");
                 while($row=mysqli_fetch_assoc($query))
                 {
-                        $task=mysqli_query($conn,"select * from task_details where ClientId=".$row['ClientId']." and  Status NOT LIKE '%Completed%' and Status NOT LIKE '%Closed%' group by ClientId  order by DueDate ") ; 
+                        if(strcasecmp($_SESSION['user']['role'], 'SuperAdmin')==0 || strcasecmp($_SESSION['user']['role'], 'Admin')==0)
+                      {
+                        $task=mysqli_query($conn,"select * from task_details where ClientId=".$row['ClientId']." and  Status NOT LIKE 'Completed' and Status NOT LIKE 'Closed' group by ClientId  order by DueDate ") ; 
+                      }
+                      else
+                      {
+                        $task=mysqli_query($conn,"select * from task_details where ClientId=".$row['ClientId']." and  Status NOT LIKE 'Completed' and Status NOT LIKE 'Closed' and AssignTo like '".$_SESSION['user']['name']."' group by ClientId  order by DueDate ") ;
+                      }
                         $row2 = mysqli_fetch_assoc($task); 
                         if($temp=mysqli_num_rows($task)>0)
 
@@ -135,10 +143,11 @@ include"red.php";
                                 echo "<td><a href='edit_task.php?cid=".$row2['ClientId']."&tid=".$row2['TaskId']."'>Set Status</a></td>";
 
                             //assign To
+
                             echo "<td>";
                             echo "<select name='assign_to' style='width:100px' class='myDropDown'>";
                             echo "<option value='' disabled selected>---select---</option>";
-                             $emp_list=mysqli_query($conn,"select name,email from employee") or die(mysqli_error($conn));
+                             $emp_list=mysqli_query($conn,"select name,email from users where hotelid='".$_SESSION['user']['hotelid']."';") or die(mysqli_error($conn));
                             while ($row3=mysqli_fetch_assoc($emp_list))
                             {
                                 $v=$row2['TaskId']."/".$row3['email'].'/'.$row3['name'];
@@ -160,7 +169,7 @@ include"red.php";
 
                             echo "</tr></tr>";
                         }
-                        else
+                        /*else
                         {
                             echo "<tr>
 
@@ -180,7 +189,7 @@ include"red.php";
                                   </tr>";
 
 
-                        }
+                        }*/
                 } 
                 ?>
         </tbody>

@@ -1,6 +1,4 @@
-<?php
- include"red.php";
-?>
+
 <!DOCTYPE html>
 <html>
 <head>

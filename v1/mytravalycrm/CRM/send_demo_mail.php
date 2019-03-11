@@ -1,7 +1,6 @@
 
 		
 <?php 
- include"red.php";
 if($_POST['email'] && $_POST['desc'] && $_POST['price'])
 {
 	 include('../phpmailer/sendemail.php');

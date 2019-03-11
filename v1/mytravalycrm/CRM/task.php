@@ -1,5 +1,4 @@
 <?php
- include"red.php";
 	session_start();
 
 	if(isset($_SESSION['cid']))

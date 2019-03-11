@@ -1,4 +1,6 @@
-<?php  include"red.php"; ?>
+<?php 
+	session_start();
+?>
 <html>
 <head>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -155,7 +157,7 @@ $(document).ready(function(){
 		<div class="container p-2">
 			<div id="carouselExampleControls" class="carousel slide" >
 				<div class="carousel-inner">
-					<?php	$mailtemplate=mysqli_query($conn,"select * from mail_template where HotelId=0 or HotelId=1 ");
+					<?php	$mailtemplate=mysqli_query($conn,"select * from mail_template where HotelId=0 or HotelId='".$_SESSION['user']['hotelid']."'") or die(mysqli_error($conn));
         				$no_temp=mysqli_num_rows($mailtemplate);
         			 $n=0;
         			while($template=mysqli_fetch_array($mailtemplate))

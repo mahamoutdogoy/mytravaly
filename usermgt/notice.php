@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mytravaly</title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
@@ -38,11 +39,11 @@
           <table class="table table-lg">
           <tr >
             <td><label for="">Notice Title</label></td>
-            <td><input type="text" name="title" class="form-control mx-auto" required placeholder="Designation name"></td>
+            <td><input type="text" name="title" class="form-control mx-auto" required placeholder="Notice Title"></td>
           </tr>
           <tr >
             <td><label for="">Notice Content</label></td>
-            <td><textarea name="content" id="" rows="10" required class="form-control mx-auto" required placeholder="Notice content"></textarea></td>
+            <td><textarea name="content" id="" rows="10" class="form-control mx-auto" required placeholder="Notice content"></textarea></td>
           </tr>
         </table>
           <div class="form-group text-center mx-auto">

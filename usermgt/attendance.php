@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Mytravaly</title>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
@@ -97,7 +98,7 @@
 		if ($p_rows['punchin'] == 0) {
 			$attdate = date('Y-m-d');
 			$timein = date('H:i');
-			$sel_att1 ="SELECT *  FROM attendance";
+			$sel_att1 ="SELECT *  FROM attendance WHERE attuserid = 10";
 			$run_att1 = mysqli_query($con, $sel_att1);
 			$a=mysqli_fetch_assoc($run_att1);
 			if(gettype($a)!="NULL"){

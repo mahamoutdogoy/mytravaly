@@ -1,8 +1,7 @@
 <?php
-	
+	session_start();
   include('../dbConnect.php');
   include('../phpmailer/sendemail.php');
-   include"red.php";
 	
   	if(isset($_POST['submit']))
    	{
@@ -18,8 +17,8 @@
 		
 		//inserting to client_details table
 	 
-    	mysqli_query($conn,"insert into  client_details (FirstName,LastName,CompanyName,LeadSource,
-					Email,DOB,Phone,DateOpened) values ('$fname','$lname',
+    	mysqli_query($conn,"insert into  client_details (hotelid,FirstName,LastName,CompanyName,LeadSource,
+					Email,DOB,Phone,DateOpened) values ('".$_SESSION['user']['hotelid']."','$fname','$lname',
 					'$cname','$lead','$email','$dob','$_POST[phone]',
 					'$date');") or die(mysqli_error($conn));
     	
@@ -42,7 +41,7 @@
 		
 		//inserting to task_details table
 		
-    	$sql = "SELECT email FROM employee where name='".$_POST['assignto']."';";
+    	$sql = "SELECT email FROM users where name ='".$_POST['assignto']."' and hotelid='".$_SESSION['user']['hotelid']."';";
 		$eid_list=mysqli_query($conn,$sql);
 		$eid=mysqli_fetch_array($eid_list);
 		

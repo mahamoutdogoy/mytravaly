@@ -1,4 +1,3 @@
-<?php  include"red.php"; ?>
 <style>
   
 
@@ -122,7 +121,7 @@
             <div class="navbar-header">
                <a href="#" class="navbar-brand py-3">
 
-                <img src="../images/hassan.jpg" width="30" alt="none" class="img-fluid rounded-circle img-thumbnail mr-3">Hi, prashanth
+                <img src="../images/user3.png" width="30" alt="none" class="img-fluid rounded-circle img-thumbnail mr-3">Hi, <?php echo $_SESSION['user']['username']; ?>
             </a>
             </div>
             
@@ -130,7 +129,7 @@
 
          <ul class="navbar-nav flex-column">
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="../../mytravalyAdmin/mt.php" class="nav-link">
                     <i class="fa fa-home " style="color:#150578"  ></i>   
                     &nbsp;&nbsp;Dashboard            
                    </a>
@@ -150,7 +149,7 @@
                           </a>
                    </li>
                    <li class="nav-item">
-                           <a href="../propertymenus.php" class="nav-link">
+                           <a href="../../property1/index.php" class="nav-link">
                                <i class="fa fa-building" style="color:rgba(194, 36, 133, 0.747)"></i>   
                                &nbsp;&nbsp;Property      
                               </a>
@@ -208,7 +207,7 @@
 
   
                            <li class="nav-item">
-                                <a href="user_main1.php" class="nav-link">
+                                <a href="../../usermgt/user_main1.php" class="nav-link">
                                     <i class="fa fa-users " style="color:#a610e5"></i>   
                                     &nbsp;&nbsp;User Management        
                                    </a>

@@ -1,5 +1,10 @@
-<?php
- include"red.php";
+
+<?php 
+  session_start();
+  if(!isset($_SESSION['user']))
+  {
+    header("location:../");
+  }
 ?>
 <html lang="en">
 <head>
@@ -162,7 +167,7 @@
                             <option value="" disabled selected>---select---</option>
                               
                             <?php  include("../dbConnect.php");
-                            $list=mysqli_query($conn,"select id,name,email from employee") or die(mysqli_error($conn));
+                            $list=mysqli_query($conn,"select userid,name,email from users where hotelid='".$_SESSION['user']['hotelid']."'") or die(mysqli_error($conn));
 
                               while($row = mysqli_fetch_assoc($list))
                               {                      

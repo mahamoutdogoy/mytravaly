@@ -1,5 +1,4 @@
 <?php
- include"red.php";
   $con=mysqli_connect("localhost","root","","mytravaly_demo")or die(mysqli_connect_error());
 if($_POST['tid'] )
     {

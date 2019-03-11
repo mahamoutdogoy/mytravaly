@@ -1,6 +1,3 @@
-<?php
- include"red.php";
-?>
 <html>
 <head>
 	<title>Completed Tasks</title>

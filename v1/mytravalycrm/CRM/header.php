@@ -1,7 +1,4 @@
-<?php
- include"red.php";
 
-  ?>
 
 <head>
 

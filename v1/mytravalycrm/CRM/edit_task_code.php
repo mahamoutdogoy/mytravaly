@@ -1,9 +1,13 @@
 <?php
-	session_start();
+	
+  session_start();
+  if(!isset($_SESSION['user']))
+  {
+    header("location:../");
+  }
 
 	include('../phpmailer/sendemail.php');
 	include('../dbConnect.php');
-	 include"red.php";
 
 	if(isset($_POST['taskUpdate'])  ) 
 	{
@@ -40,7 +44,7 @@
 			where TaskId='$_REQUEST[tid]'") or die(mysqli_error($conn));
 		
 		//selecting email id of employee 
-		$query="SELECT email FROM employee WHERE name='".$assignto."'";
+		$query="select name,email from users where hotelid='".$_SESSION['user']['hotelid']."'";
 		$list=mysqli_query($conn,$query)  or die(mysqli_error($conn));
 		$email=mysqli_fetch_array($list) or die(mysqli_error($conn));
 

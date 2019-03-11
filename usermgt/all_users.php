@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Mytravaly</title>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
@@ -107,10 +108,10 @@
 										}
 									}
 
-									echo "<tr><td class='float-left'><label for='resmail'>$p_rows[prename]</label></td><td class='float-right border border-warning'><input type='checkbox' id='chid' name='chkbx$p_rows[preid]' $chk onclick='return set_userid($p_rows[preid],$rows[userid]);'></td></tr>";
+									echo "<tr><td class='float-left'><label for='resmail'>$p_rows[prename]</label></td><td class='float-right border border-warning'><input type='checkbox' id='chid' name='chkbx$rows[userid][]' value='$p_rows[preid]' $chk></td></tr>";
 
 								}			 
-								echo "</table><input id='idp$rows[userid]' value='' type='hidden' name='ppreid'><input type='hidden' value='$rows[userid]' name='uprid'>
+								echo "</table><input type='hidden' value='$rows[userid]' name='uprid'>
 								<input type='submit' class='btn btn-success btn-lg' value='Submit' name='modal_sub'>
 								</form>
 								</div>
@@ -143,28 +144,17 @@
 <?php	
 if (isset($_POST['modal_sub'])) {
 	$userid = $_POST['uprid'];
-	$preid= $_POST['ppreid'];
-	if (isset($_POST['chkbx'.$preid])) {
-		$up_sql = "UPDATE users SET privilege = CONCAT(privilege,'$preid,') WHERE userid = $userid";
+	$prev='';
+	if (isset($_POST['chkbx'.$userid])) {
+		foreach ($_POST['chkbx'.$userid] as $key) {
+			# code...
+			$prev = $prev.$key.',';
+		}}
+		$up_sql = "UPDATE users SET privilege = '$prev' WHERE userid = $userid";
 		if(mysqli_query($con, $up_sql)){?>
 		<script>window.location = "all_users.php";</script>
 		<?php
-	}}else{
-		$ur_sql = "SELECT privilege FROM users WHERE userid=$userid";
-		$ur_run = mysqli_query($con,$ur_sql);
-		$ur_rows = mysqli_fetch_assoc($ur_run);
-		$prvs=explode(',',$ur_rows['privilege']);
-		$count = count($prvs) - 1;
-		for ($i=0 ; $i < $count; $i++ ) { 
-			if ($prvs[$i]==$preid) {
-				array_splice($prvs,$i,1);
-			}
-		}
-		$prv=implode(',',$prvs);
-		if(mysqli_query($con,"UPDATE users set privilege='$prv' WHERE userid=$userid")){?>
-		<script>window.location = "all_users.php";</script>
-		<?php
-}}}
+	}}
 ?>
 
 
@@ -203,10 +193,3 @@ if(isset($_GET['activeid'])){
 	}
 }
 ?>
-
-<script>
-	function set_userid(id,id2){
-		document.getElementById('idp'+id2).value=id;
-		//alert(d);
-	}
-</script>

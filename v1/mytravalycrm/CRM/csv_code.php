@@ -1,7 +1,6 @@
 <?php
 	
     require_once('../dbConnect.php');
-     include"red.php";
 
     $filename=$_FILES['file']['tmp_name'];
     if(isset($_POST['submit']))

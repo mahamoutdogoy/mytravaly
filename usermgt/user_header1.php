@@ -7,6 +7,7 @@
   $db = "mytravaly";
 
   $con = mysqli_connect($server,$user,$pwd,$db);
+  mysqli_query($con, "SET SESSION sql_mode = ''");
 ?>
 
 <!--Confirmation function-->
@@ -43,7 +44,6 @@
       <li class="nav-item"><a href="leave_list_admin.php" class="nav-link">All Leaves</a></li>
       <li class="nav-item"><a href="leave_category.php" class="nav-link">Leave Category</a></li>
       <li class="nav-item"><a href="notice.php" class="nav-link">Notices</a></li>
-      <li class="nav-item " style="margin-left: 72px;"><a href="#" class="nav-link">LogOut</a></li>
      </ul>
   </div>
   </div>

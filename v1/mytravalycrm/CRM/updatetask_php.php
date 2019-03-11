@@ -1,5 +1,4 @@
 <?php
- include"red.php";
 	session_start();
 	include("../dbConnect.php");
 if(isset($_POST['update']))

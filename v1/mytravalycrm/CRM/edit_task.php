@@ -1,8 +1,7 @@
 
 <?php
-
+	 session_start();
 	include("../dbConnect.php");
-	 include"red.php";
 ?>
 	
 
@@ -170,7 +169,7 @@
                 			<option value='' disabled selected>---select---</option>
 
                 <?php //adding employee name to assign to drop down from database
-                		$emp_list=mysqli_query($conn,"select name,email from employee") or die(mysqli_error($conn));
+                		$emp_list=mysqli_query($conn,"select name,email from users where hotelid='".$_SESSION['user']['hotelid']."';") or die(mysqli_error($conn));
                 		
                 		while ($row3=mysqli_fetch_assoc($emp_list)) {
 					
@@ -272,7 +271,7 @@
 					<br>
 						<hr>						
 						<?php $path="\"javascript: form.action='edit_task_code.php?cid=".$_REQUEST['cid']."&tid=".$_REQUEST['tid']."'\""?>		
-						<input type='submit' name='taskUpdate' class='btn btn-warning' value='Update' onclick=<?php echo $path; ?> />
+						<input type='submit' name='taskUpdate' class='btn btn-warning' draggable='true' value='Update' onclick=<?php echo $path; ?> />
 						
 					<hr/>
 					</td>

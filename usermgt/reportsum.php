@@ -1,7 +1,17 @@
+<?php
+  date_default_timezone_set("Asia/Kolkata");
+  $server = "localhost";
+  $user = "mytravaly";
+  $pwd = "mytravaly";
+  $db = "mytravaly";
+
+  $con = mysqli_connect($server,$user,$pwd,$db);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Mytravaly</title>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
@@ -16,14 +26,21 @@
 <body>
 	<!--Header part-->
 	<?php
-		include"user_header1.php";
+		//include"user_header1.php";
 	?>
-	<div class="row">
 		<?php
-		include"sidebar.php";
+		//include"sidebar.php";
 	 ?>
 	
 	<div class="container">
+		<button class="btn btn-info m-4" id="printid" onclick="return myFunction();">Print this page</button>
+
+		<script>
+		function myFunction() {
+			document.getElementById('printid').style.display = 'none'; 
+		  	window.print();
+		}
+		</script>
 		<div class="card col-md-12">
 				<div class="card-header"><h3><i class="fas fa-user-alt"> </i> Attendance list from <?php if (isset($_POST['datefromsum'])) {
 					echo $_POST['datefromsum'];
@@ -79,12 +96,8 @@
 					</table>
 				</div>
 			</div>
-	</div>
+	
  </div>
 
-	<!--Footer part-->
-	<?php
-		//include"footer.php";
-	?>
 </body>
 </html>

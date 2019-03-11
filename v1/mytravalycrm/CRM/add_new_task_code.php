@@ -1,5 +1,4 @@
 <?php
- include"red.php";
 	session_start();
 
 	if(isset($_POST['addtask']) && isset($_SESSION['cid']))

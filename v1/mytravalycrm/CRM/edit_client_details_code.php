@@ -1,5 +1,4 @@
 <?php
- include"red.php";
 	session_start();
 	if(isset($_POST['editClientDetails']) && isset($_SESSION['cid']))
 	{
