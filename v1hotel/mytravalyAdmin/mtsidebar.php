@@ -8,12 +8,17 @@
         <!------------ sidebar ------------->
          <nav class="col-md-3 col-lg-2 d-none d-md-block sidebar right-padding max-viewport">
 
-            <a href="profile.php" class="navbar-brand py-3">
+            <a href="../mytravalyAdmin/profile.php" class="navbar-brand py-3">
               <img src='<?php echo $image_src; ?>' style='width:50px;height:50px' alt=person class='img-fluid rounded-circle img-thumbnail mr-3'/>
 
-              <!--  <!--  <img src="images/team.jpg" width="40" alt="person" class="img-fluid rounded-circle img-thumbnail mr-3"> 
+              <!--  <img src="images/team.jpg" width="40" alt="person" class="img-fluid rounded-circle img-thumbnail mr-3"> 
  -->
-                hi, <?php echo $_SESSION['user']['username'];?> 
+                hi, <?php
+
+                      echo $_SESSION['user']['username'];
+
+                 
+               ?> 
        <!--     <i>(<?php// echo $_SESSION['user']['role'];?>) </i> -->
          
             </a>
@@ -22,18 +27,18 @@
 
          <ul class="navbar-nav flex-column">
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="../mytravalyAdmin/mt.php" class="nav-link">
                     <i class="fa fa-home " style="color:#150578"  ></i>   
                     &nbsp;&nbsp;Dashboard            
                    </a>
             </li>
 
-            <li class="nav-item">
+           <!--  <li class="nav-item">
                    <a href="../mail-using-server.php" class="nav-link">
                        <i class="fa fa-list " style="color:#FFBA08"></i>   
                        &nbsp;&nbsp;ResMail          
                       </a>
-               </li>
+               </li> -->
 
                <li class="nav-item">
                        <a href="../mytravalycrm/CRM/index.php" class="nav-link">
@@ -42,7 +47,7 @@
                           </a>
                    </li>
                    <li class="nav-item">
-                           <a href="../property1/index.php" class="nav-link">
+                           <a href="../property/rooms_dashboard_new.php" class="nav-link">
                                <i class="fa fa-building" style="color:rgba(194, 36, 133, 0.747)"></i>   
                                &nbsp;&nbsp;Property      
                               </a>
@@ -99,16 +104,16 @@
                            </li>
 
 
-
+<!-- 
                            <li class="nav-item">
                                <a href="#" class="nav-link">
                                    <i class="fa fa-shopping-bag " style="color:#07775f"></i>   
                                    &nbsp;&nbsp;Pay Plans       
                                   </a>
                            </li>
+ -->
 
-
-
+<!-- 
                            <li class="nav-item">
                                <a href="#" class="nav-link">
                                    <i class="fa fa-shopping-bag " style="color:#07775f"></i>   
@@ -116,19 +121,19 @@
                                   </a>
                            </li>
 
-
-
+ -->
+<!-- 
                            <li class="nav-item">
                                <a href="#" class="nav-link">
                                    <i class="fa fa-shopping-bag " style="color:#07775f"></i>   
                                    &nbsp;&nbsp;Log Viewer        
                                   </a>
                            </li>
-
+ -->
 
 
                            <li class="nav-item">
-                               <a href="#" class="nav-link">
+                               <a href="../mytravalyAdmin/profile.php" class="nav-link">
                                    <i class="fa fa-shopping-bag " style="color:#07775f"></i>   
                                    &nbsp;&nbsp;Setting       
                                   </a>
@@ -139,7 +144,7 @@
                            <li class="nav-item">
                                <a href="#" class="nav-link">
                                    <i class="fa fa-shopping-bag " style="color:#07775f"></i>   
-                                   &nbsp;&nbsp;Contact       
+                                   &nbsp;&nbsp;Community      
                                   </a>
                            </li>
 
@@ -151,13 +156,13 @@
                                   </a>
                            </li>
 
-                           <li class="nav-item">
+                           <!-- <li class="nav-item">
                                <a href="#" class="nav-link">
                                    <i class="fa fa-shopping-bag " style="color:#07775f"></i>   
                                    &nbsp;&nbsp;Organizations       
                                   </a>
                            </li>
-
+ -->
 
                            <li class="nav-item">
                                 <a href="../usermgt/user_main1.php" class="nav-link">

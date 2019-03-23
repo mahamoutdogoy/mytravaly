@@ -1,7 +1,8 @@
-<?php 
-session_start();
 
-   include "../connect.php";
+<?php 
+/*session_start();*/
+
+   include "connect.php";
  ?>
 
 
@@ -124,16 +125,17 @@ session_start();
           <div class="row">
          <nav class="col-md-3 col-lg-2 d-none d-md-block sidebar right-padding max-viewport">
 
-            <a href="#" class="navbar-brand py-3">
+            <a href="../mytravalyAdmin/profile.php" class="navbar-brand py-3">
+               <img src='<?php echo $image_src; ?>' style='width:50px;height:50px' alt=person class='img-fluid rounded-circle img-thumbnail mr-3'/>
 
-                <img src="images/user3.png" width="30" alt="none" class="img-fluid rounded-circle img-thumbnail mr-3">
+               <!--  <img src="images/user3.png" width="30" alt="none" class="img-fluid rounded-circle img-thumbnail mr-3"> -->
                 hi, <?php echo $_SESSION['user']['username'];?> 
             </a>
 
 
          <ul class="navbar-nav flex-column">
             <li class="nav-item">
-                <a href="../mytravalyAdmin/mt.php" class="nav-link">
+                <a href="attendance.php" class="nav-link">
                     <i class="fa fa-home " style="color:#150578"  ></i>   
                     &nbsp;&nbsp;Dashboard            
                    </a>
@@ -156,12 +158,19 @@ session_start();
                 break;
               }
           }
-            echo "<li class='nav-item $d_class'>
-                   <a href='user_main1.php' class='nav-link'>
+            echo "<li class='nav-item $d_class'>";
+              if ($rows['prename'] == "CRM") {
+                echo "<a href='../mytravalycrm/CRM/index.php' class='nav-link'>
                        <i class='fa fa-list' style='color:#FFBA08'></i>   
                        &nbsp;&nbsp;$rows[prename]          
                       </a>
                </li>";
+              }else{
+                   echo "<a href='#' class='nav-link'>
+                       <i class='fa fa-list' style='color:#FFBA08'></i>   
+                       &nbsp;&nbsp;$rows[prename]          
+                      </a>
+               </li>";}
           }
 
         ?>     

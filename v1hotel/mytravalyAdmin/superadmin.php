@@ -6,7 +6,7 @@ session_start();
 {
 include("../connect.php");
 /*include("../usercheck.php");*/
-include"../fetch.php";
+include"fetch.php";
 }
 ?>
 

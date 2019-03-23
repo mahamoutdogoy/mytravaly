@@ -3,4 +3,5 @@
     if(session_destroy()) 
     {
     header("Location:hotellogin.php"); 
+}
     ?>

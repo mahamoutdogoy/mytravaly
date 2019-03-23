@@ -10,9 +10,10 @@
 
             <a href="profile.php" class="navbar-brand py-3">
 
-                <img src="images/user3.png" width="40" alt="person" class="img-fluid rounded-circle img-thumbnail mr-3">
+                <img src='<?php echo $image_src; ?>' style='width:50px;height:50px' alt=person class='img-fluid rounded-circle img-thumbnail mr-3'/>
 
-                hi, <?php echo $_SESSION['user']['username'];?>
+
+                hi, <?php echo $_SESSION['user']['fname'];?>
        <!--     <i>(<?php// echo $_SESSION['user']['role'];?>) </i> -->
          
             </a>

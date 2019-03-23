@@ -2,7 +2,7 @@
     include 'vone.php';
     
 
-   include '../connect.php';
+   include '../../connect.php';
   
  ?>
 

@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,10 +18,11 @@
 	<!--Header part-->
 	
 		<?php
-		include"mtsidebar.php";
+		include '../mytravalyAdmin/myheader.php';
+		include"../mytravalyAdmin/mtsidebar.php";
 	 ?>
 	
-	<div class="col-md-9">
+	<div class="col-md-9 col-lg-10" >
 		<?php
 		include"user_header1.php";
 	?>
@@ -43,45 +43,53 @@
 						</thead>
 						<tbody>
 							<?php
-								$sel_sql ="SELECT * FROM leave_application ORDER BY appid DESC";
-								$run = mysqli_query($con, $sel_sql);
-								$status_txt = " ";
-								$status_cls = " ";
-								while ($rows = mysqli_fetch_assoc($run)) {
-									$grant_cls =" ";
-									$reject_cls =" ";
-									$sel_cat = "SELECT * FROM leave_category WHERE catid = $rows[appcatid]";
-									$run_cat = mysqli_query($con, $sel_cat);
-									$cat_name =" ";
-									while($rows_cat = mysqli_fetch_assoc($run_cat)){
-										$cat_name = $rows_cat['catname'];
-									}
-									if ($rows['appstatus'] == 0) {
-										$status_txt ="Pending...";
-										$status_cls = "btn-warning";
-									}elseif ($rows['appstatus'] == 1) {
-										$status_txt ="Granted!";
-										$status_cls = "btn-success";
-										$grant_cls ="disabled";
-									}else{
-										$status_txt ="Rejected!";
-										$status_cls = "btn-danger";
-										$reject_cls ="disabled";
-									}
-									echo "<tr>
-										<td>abib</td>
-										<td>$rows[appdate]</td>
-										<td>$cat_name</td>
-										<td>$rows[appdesc]</td>
-										<td><span class='$status_cls'>$status_txt</span></td>
-										<td>
-											<a href='leave_list_admin.php?grantid=$rows[appid]' class='btn btn-success btn-sm $grant_cls'>Grant</a><a href='leave_list_admin.php?rejectid=$rows[appid]' class='btn btn-warning btn-sm $reject_cls'>Reject</a>
-										</td>
-										<td><a href='leave_list_admin.php?delid=$rows[appid]' class='btn btn-danger btn-sm' onclick = 'return del_conf();'>Delete</a></td>
-									</tr>";
-								}
+                                $sel_sql ="SELECT * FROM leave_application ORDER BY appid DESC";
+                                $run = mysqli_query($con, $sel_sql);
+                                $status_txt = " ";
+                                $status_cls = " ";
+                                while ($rows = mysqli_fetch_assoc($run)) {
+                                    $grant_cls =" ";
+                                    $reject_cls =" ";
+                                    $sel_cat = "SELECT * FROM leave_category WHERE catid = $rows[appcatid]";
+                                    $run_cat = mysqli_query($con, $sel_cat);
+                                    $cat_name =" ";
+                                    while($rows_cat = mysqli_fetch_assoc($run_cat)){
+                                        $cat_name = $rows_cat['catname'];
+                                    }
+                                    if ($rows['appstatus'] == 0) {
+                                        $status_txt ="Pending...";
+                                        $status_cls = "btn-warning";
+                                    }elseif ($rows['appstatus'] == 1) {
+                                        $status_txt ="Granted!";
+                                        $status_cls = "btn-success";
+                                        $grant_cls ="disabled";
+                                    }else{
+                                        $status_txt ="Rejected!";
+                                        $status_cls = "btn-danger";
+                                        $reject_cls ="disabled";
+                                    }
 
-							?>
+                                    $sel_user = "SELECT username FROM users WHERE userid = $rows[appuserid]";
+                                    $run_user = mysqli_query($con, $sel_user);
+                                    $user_name =" ";
+                                    while($rows_user = mysqli_fetch_assoc($run_user)){
+                                        $user_name = $rows_user['username'];
+                                    }
+
+                                    echo "<tr>
+                                        <td>$user_name</td>
+                                        <td>$rows[appdate]</td>
+                                        <td>$cat_name</td>
+                                        <td>$rows[appdesc]</td>
+                                        <td><span class='$status_cls'>$status_txt</span></td>
+                                        <td>
+                                            <a href='leave_list_admin.php?grantid=$rows[appid]' class='btn btn-success btn-sm $grant_cls'>Grant</a><a href='leave_list_admin.php?rejectid=$rows[appid]' class='btn btn-warning btn-sm $reject_cls'>Reject</a>
+                                        </td>
+                                        <td><a href='leave_list_admin.php?delid=$rows[appid]' class='btn btn-danger btn-sm' onclick = 'return del_conf();'>Delete</a></td>
+                                    </tr>";
+                                }
+
+                            ?>
 						</tbody>
 					</table>
 				</div>

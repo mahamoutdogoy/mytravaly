@@ -18,6 +18,7 @@
   <!--Header part-->
  
     <?php
+     include '../mytravalyAdmin/myheader.php';
     include"sidebar.php";
    ?>
   

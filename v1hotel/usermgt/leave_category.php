@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,17 +15,19 @@
 
 	<script>
 	</script>
+	
 
 </head>
 <body>
 	<!--Header part-->
 
 	<?php
-		include"mtsidebar.php";
+	include '../mytravalyAdmin/myheader.php';
+		include"../mytravalyAdmin/mtsidebar.php";
 	?>
 
 	<!--Create User form-->
-	<div class="col-md-9">
+	<div class="col-md-9 col-lg-10">
 			<?php
 		include"user_header1.php";
 	?>

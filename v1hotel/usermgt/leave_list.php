@@ -17,6 +17,7 @@
 <body>
 	<!--Header part-->
 		<?php
+		 include '../mytravalyAdmin/myheader.php';
 		include"sidebar.php";
 	 ?>
 	
@@ -62,7 +63,7 @@
 										$status_cls = "btn-danger";
 									}
 									echo "<tr>
-										<td>abib</td>
+										<td>".$_SESSION['user']['username']."</td>
 										<td>$rows[appdate]</td>
 										<td>$cat_name</td>
 										<td>$rows[appdesc]</td>

@@ -1,0 +1,108 @@
+img[src="images/logo.png"] {
+	padding-top:8px;	
+	}
+	ul.nav li {
+		padding-top:8px;
+	}
+	ul.nav li a {
+		color: #FF6F61;
+		padding: 5px;
+		margin-right: 8px;
+	}
+	.hotels a:hover,ul.nav li a:hover {
+		padding: 5px;
+		background-color:#20b2aa;
+		border-radius: 5px;
+	} 
+
+	.hotels {
+		margin-left: 100px;
+		margin-right: 200px;
+		padding: 0px;
+
+	}
+	.top_container {
+	margin-top:20px;
+	}
+	#hassan {
+		position: absolute;
+		left: 917px;
+		background-color:#FF6F61;
+
+	}
+
+
+
+	
+	
+
+	#hassan ul li a {
+	color: white;
+	padding: 2px;
+	padding-top: 1px;
+	margin-top: -5px;
+	border-right: 0px solid white;
+	}
+
+	#hassan ul li a:hover {
+		background-color:#FF6F56;
+	}
+.user_login {
+       position: absolute;
+       
+       background-color: #FF6F56;
+       left:10px;
+       padding-top:10px;
+       left: 105px;
+      
+
+
+    }
+    
+	
+	.login_form {
+		padding-top: 30px;
+		width: 60%;
+
+	}
+
+	.modal-header {
+		background-color:#FF6F56;
+	}
+	.Remember_checkbox{
+		padding-left: 5px;
+
+	}
+
+	.modal-title{
+		color: white;
+		padding: 20PX;
+	}
+	#exampleModalLabel {
+		margin-left: 180px;
+		padding: 20px;
+
+
+	}
+	.hotels_link {
+		border: 1px solid red;
+		
+		border-radius: 5px;
+	}
+
+
+	/*   collapse */ 
+	.col-12 #demo .row div.col-3 p {
+		color: white;
+	}
+
+	/*    */
+	input[name="subscribe_email"] {
+		border-radius: 15px 0px 0px 15px;
+		width: 80%;
+	}
+	.subscribe {
+		left: 450px;
+
+
+	}

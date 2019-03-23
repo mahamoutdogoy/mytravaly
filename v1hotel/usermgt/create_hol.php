@@ -23,7 +23,7 @@
 	?>
 	<div class="row">
 	<?php
-		include"sidebar.php";
+		include"../mytravalyAdmin/mtsidebar.php";
 	?>
 	<div class="container">
 		<div class="row">

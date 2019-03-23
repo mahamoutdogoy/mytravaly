@@ -16,11 +16,12 @@ if(isset($_POST['submit'])){
    $row1=mysqli_fetch_assoc($result1);
    $count1=mysqli_num_rows($result1);
    if($count==1){
-    $_SESSION['user_id']= $row['userid'];
+    
   
   $_SESSION['user']=array(
    'userid'=>$row['userid'],  
-   'fname'=>$row['fname'],
+   'username'=>$row['fname'],
+   'hotelid'=>$row['hotelid'],
    'lname'=>$row['lname'],
    'country'=>$row['country'],
    'property'=>$row['property'],
@@ -32,13 +33,13 @@ if(isset($_POST['submit'])){
    $role=$_SESSION['user']['role'];
   switch($role){
   case 'user':
-  header('location:phpmailer/index.php');
+  header('location:usermgt/attendance.php');
   break;
   case 'superadmin':
-  header('location:mytravalyAdmin/superadmin.php');
+  header('location:mytravalyAdmin/mt.php');
   break;
   case 'admin':
-  header('location:phpmailer/index.php');
+  header('location:mytravalyAdmin/mt.php');
   break;
    }
    }elseif($count1==1){
@@ -48,19 +49,23 @@ if(isset($_POST['submit'])){
   $_SESSION['user']=array(
    'userid'=>$row1['userid'], 
    'name'=>$row1['name'],
-   'uname'=>$row1['uname'],
+   'username'=>$row1['username'],
+   'hotelid'=>$row1['hotelid'],
+   'email'=>$row1['email'],
+    'image'=>$row1['image'],
+    'password'=>$row1['password'],
    'role'=>$row1['role']
    );
    $roles=$_SESSION['user']['role'];
   switch($roles){
   case 'user':
-  header('location:phpmailer/index.php');
+  header('location:usermgt/attendance.php');
   break;
   case 'superadmin':
-  header('location:mytravalyAdmin/superadmin.php');
+  header('location:mytravalyAdmin/mt.php');
   break;
   case 'admin':
-  header('location:phpmailer/index.php');
+  header('location:mytravalyAdmin/mt.php');
   break;
   
    }
@@ -78,6 +83,11 @@ if(isset($_POST['submit'])){
 <html>
 <head>
   <title></title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <style type="text/css">
   
@@ -367,6 +377,19 @@ button:hover.off.login {
 {
   width: 850px;
 }
+.btt
+{
+  text-decoration: none;
+
+  background-color:#ff4f35;
+  font-size: 20px;
+  color:white;
+  width: 220px;
+  height: 40px;
+  border-radius:15px;
+  font-family: "Times New Roman", Times, serif;
+
+}
 
 </style>
 <body>
@@ -425,7 +448,8 @@ button:hover.off.login {
           <center>
           <div class="form-element form-submit ">
             <button id="logIn" class="login" type="submit" name="submit">Log In</button>
-            <button id="goRight" class="login off" name="signup">Forgot Password</button>
+           <!--  <button id="goRight" href="passforget.php" class="login off" name="signup">Forgot Password</button> -->
+            <a  class="btn btn-warning btt" href="passforget.php" type="submit" value="Forgot Password">FORGOT PASSWORD</a>
           </div>
         </center>
         </form>

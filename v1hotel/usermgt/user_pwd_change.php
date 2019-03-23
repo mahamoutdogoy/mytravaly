@@ -23,6 +23,7 @@
 	<!--Header part-->
 	
 	<?php
+	 include '../mytravalyAdmin/myheader.php';
 		include"sidebar.php";
 	?>
 	<div class="col-md-9 col-lg-10">

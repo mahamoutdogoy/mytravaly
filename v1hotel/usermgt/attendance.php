@@ -33,10 +33,12 @@
 	</style>
 <body>
 	<!--Header part-->
+
 	<?php
+	 include '../mytravalyAdmin/myheader.php';
 		include"sidebar.php";
 	?>
-	<div class="col-md-9 col-md-10">
+	<div class="col-md-9 col-lg-10">
 		<?php
 		include"user_header2.php";
 	?>

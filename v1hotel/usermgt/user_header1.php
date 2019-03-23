@@ -11,11 +11,41 @@
   function del_conf(){
   return confirm("Are you sure you want to delete this record?");
 }
+function userfunc(){
+    document.getElementById('inhouseusers').style.display="block";
+    document.getElementById('customusers').style.display="none";
+    document.getElementById('hotelusers').style.display="none";
+    document.getElementById('guestusers').style.display="none";
+  }
+  
+  function customfunc(){
+    document.getElementById('customusers').style.display="block";
+    document.getElementById('inhouseusers').style.display="none";
+    document.getElementById('hotelusers').style.display="none";
+    document.getElementById('guestusers').style.display="none";
+  }
+  
+  function hotelfunc(){
+    document.getElementById('hotelusers').style.display="block";
+    document.getElementById('inhouseusers').style.display="none";
+    document.getElementById('customusers').style.display="none";
+    document.getElementById('guestusers').style.display="none";
+  }
+
+  function guestfunc(){
+    document.getElementById('guestusers').style.display="block";
+    document.getElementById('hotelusers').style.display="none";
+    document.getElementById('inhouseusers').style.display="none";
+    document.getElementById('customusers').style.display="none";
+  }
 </script>
 
 <!--top menu-->
 <style>
   #navbarid{
+    background: #f15025;
+  }
+  #header-row{
     background: #f15025;
   }
  #navbarid li a{
@@ -24,7 +54,7 @@
 </style>
 
 <div class="mb-3 col-md-12">
-  <div class="row">
+  <div  id="header-row" class="row">
 
     
     <ul class="nav center" id="navbarid">

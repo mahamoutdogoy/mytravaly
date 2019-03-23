@@ -1,6 +1,6 @@
 <?php
 session_start();
- include("../connect.php");
+ include("../../connect.php");
  $sql = "select image from users where userid=".$_SESSION['user']['userid'];
  $result = mysqli_query($con,$sql);
  $row = mysqli_fetch_array($result);

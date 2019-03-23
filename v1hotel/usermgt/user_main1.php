@@ -9,10 +9,10 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="main.css">
-	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
-
+ -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
 
@@ -21,11 +21,13 @@
 </head>
 
 <script>
+
 	function v_func() {
 		var x = document.getElementById("indiv_report");
   		var x2 = document.getElementById("summary_report");
    		if (window.getComputedStyle(x2).display === "block") {
     	x2.style.display = "none";
+
   		}
   		if (window.getComputedStyle(x).display === "none") {
     		x.style.display = "block";
@@ -55,6 +57,12 @@
 	}
 </script>
 
+<script type="text/javascript">
+	
+
+
+</script>
+
 
 <body>
 	<!--Header part-->
@@ -63,10 +71,10 @@
 	<!-- <div class="container"> -->
 		<?php
 		 include '../mytravalyAdmin/myheader.php';
-		include"mtsidebar.php";
+		include"../mytravalyAdmin/mtsidebar.php";
 
 	 ?>
-	 <div class="col-md-9" >
+	 <div class="col-md-9 col-lg-10" >
 	 	<?php
 		include"user_header1.php";
 	?>
@@ -78,22 +86,37 @@
 				$inf_rows = mysqli_fetch_assoc($inf_run);
 				if ($inf_rows) {
 					$inf_ver=1;
-					echo "<div class='alert alert-info'>";}
+					echo "<div class='dropdown alert alert-info'>
+					<ul class='dropdown-menu fade in'>";}
 					$inf_run = mysqli_query($con, $inf_sql);
+					$c = 0;
 					while ($inf_rows=mysqli_fetch_assoc($inf_run)) {
-						echo "$inf_rows[username], ";
+						echo "<li class='text-center alert alert-info '>$inf_rows[username]<li>";
+						$c++;
+
 					}
 					if($inf_ver){
-					echo "is/are present today</div>";
+					echo "</ul><span class='w-75' data-toggle='dropdown'><strong>$c</strong> Users are present today</span><span class='close' data-dismiss='alert' aria-label='close'>&times;</span></div>";
 				}
 
-				$abs_sql="SELECT count(userid) AS abs  FROM users WHERE punchin=0";
-				if($abs_run = mysqli_query($con, $abs_sql)){
+				$abs_sql="SELECT username FROM users WHERE punchin=0";
+				$abs_run = mysqli_query($con, $abs_sql);
+				$abs_ver=0;
 				$abs_rows = mysqli_fetch_assoc($abs_run);
-				if ($abs_rows['abs']) {
-					echo "<div class='alert alert-warning'>$abs_rows[abs] Users are still not present</div>";
-				}
-		}
+				if ($abs_rows) {
+					$abs_ver=1;
+					echo "<div class='dropdown alert alert-warning'>
+					<ul class='dropdown-menu fade in'>";}
+					$abs_run = mysqli_query($con, $abs_sql);
+					$c = 0;
+					while ($abs_rows=mysqli_fetch_assoc($abs_run)) {
+						echo "<li class='text-center alert alert-warning'>$abs_rows[username]<li>";
+						$c++;
+
+					}
+					if($abs_ver){
+					echo "</ul><span class='w-75 ' data-toggle='dropdown'><strong>$c</strong> Users are still not present </span><span class='close' data-dismiss='alert' aria-label='close'>&times;</span></div>";
+					}
 			?>
 		<div class="card">
 			<div class="card-header">
@@ -134,14 +157,14 @@
 						<div class="dropdown">
 							<button class="btn btn-warning dropdown-toggle btn-block" data-toggle="dropdown">Reports</button>
 							<div class="dropdown-menu">
-								<a onclick="v_func();" href="#" class="dropdown-item">Individual Report </a>
+								<a class="dropdown-item" onclick="v_func();" href="#">Individual Report </a>
 								<a onclick="v_func1();" href="#" class="dropdown-item">Summary Report</a>
 							</div>
 						</div>
 					</div>
 			</div>
 			</div>
-			<div class="col-md-4" id="indiv_report" style="display: none;">
+			<div class="col-md-4" id="indiv_report" style="display:none;">
 			<div class="card ml-2">
 					<div class="card-header">
 						<i class="far fa-list-alt"></i> Individual Report</div>	
